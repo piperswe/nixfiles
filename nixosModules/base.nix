@@ -1,7 +1,8 @@
 { nix-ld, overlay, nur, nixosModules, ... }:
 { pkgs, lib, config, modulesPath, ... }: {
   imports = [
-    nix-ld.nixosModules.nix-ld
+    # Figure out a way to disable this on non-x86_64-linux
+    # nix-ld.nixosModules.nix-ld
     nixosModules.cache
     (modulesPath + "/installer/cd-dvd/channel.nix")
   ];
