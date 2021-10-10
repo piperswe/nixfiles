@@ -1,4 +1,5 @@
-{ homeModules, ... }:
+{ homeModules, lib, ... }:
+with lib;
 { pkgs, lib, config, ... }:
 {
   imports = [ homeModules.firefox ];
@@ -8,28 +9,20 @@
   config = lib.mkIf config.withGUI {
     home.packages = with pkgs;
       let
-        linuxNonARMv6lPackages = [
-          tdesktop
-        ];
-        linuxNonAarch32Packages = [
-          vlc
-        ];
-        x86_64-linuxPackages = [
-          _1password-gui
-          plexamp
-          steam
-          steam-run
-          yubioath-desktop
-        ];
-        vscodiumSupported = builtins.elem stdenv.system [ "x86_64-linux" "x86_64-darwin" "aarch64-linux" "armv7l-linux" ];
+        x86_64-linux = stdenv.system == "x86_64-linux";
       in
-      [
-        josm
-      ]
-      ++ (lib.optionals (stdenv.system == "x86_64-linux") x86_64-linuxPackages)
-      ++ (lib.optionals (stdenv.isLinux && stdenv.system != "armv6l-linux") linuxNonARMv6lPackages)
-      ++ (lib.optionals (stdenv.isLinux && !stdenv.isAarch32) linuxNonAarch32Packages)
-      ++ (lib.optional vscodiumSupported vscodium);
+      universal-packages
+        [
+          { compatible = stdenv.isLinux && stdenv.system != "armv6l-linux"; pkg = tdesktop; }
+          { compatible = stdenv.isLinux && !stdenv.isAarch32; pkg = vlc; }
+          { compatible = x86_64-linux; pkg = _1password-gui; }
+          { compatible = x86_64-linux; pkg = plexamp; }
+          { compatible = x86_64-linux; pkg = steam; }
+          { compatible = x86_64-linux; pkg = steam-run; }
+          { compatible = x86_64-linux; pkg = yubioath-desktop; }
+          { compatible = builtins.elem stdenv.system [ "x86_64-linux" "x86_64-darwin" "aarch64-linux" "armv7l-linux" ]; pkg = vscodium; }
+          josm
+        ];
     allowUnfreePackages = [ "1password" "plexamp" "steam" "steam-original" "steam-runtime" ];
   };
 }

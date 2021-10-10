@@ -19,9 +19,9 @@
     let
       context = inputs // inputs.self;
       inherit (context) packages overlay nixpkgs nixosConfigurations homeConfigurations home-manager;
-      inherit (nixpkgs) lib;
     in
     {
+      lib = import ./lib context;
       homeConfigurations = import ./homeConfigurations context;
       homeModules = import ./homeModules context;
       nixosConfigurations = import ./nixosConfigurations context;
@@ -103,7 +103,7 @@
                 }).config.home.activationPackage;
               });
           in
-          context.nixpkgs.lib.mapAttrs
+          nixpkgs.lib.mapAttrs
             (name: value:
               (builtins.listToAttrs
                 (builtins.map
@@ -111,7 +111,7 @@
                     name = system;
                     value = buildHome value system;
                   })
-                  lib.systems.supported.hydra)))
+                  nixpkgs.lib.systems.supported.hydra)))
             homeConfigurations;
       };
     };
