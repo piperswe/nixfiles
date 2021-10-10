@@ -40,6 +40,7 @@ nixpkgs.lib.nixosSystem {
             binary_cache_public_uri = https://nix-cache.piperswe.me
             upload_logs_to_binary_cache = true
           '';
+          buildMachinesFiles = [ ];
         };
 
         nix.buildMachines = [
