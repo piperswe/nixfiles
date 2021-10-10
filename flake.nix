@@ -1,10 +1,10 @@
 {
   description = "pmc's Nix system configuration";
 
-  inputs.nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
-  inputs.home-manager.url = github:nix-community/home-manager/master;
+  inputs.nixpkgs.url = github:NixOS/nixpkgs;
+  inputs.home-manager.url = github:nix-community/home-manager;
   inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";
-  inputs.nix-ld.url = github:Mic92/nix-ld/main;
+  inputs.nix-ld.url = github:Mic92/nix-ld;
   inputs.nix-ld.inputs.nixpkgs.follows = "nixpkgs";
   inputs.flake-utils.url = github:numtide/flake-utils;
   inputs.gitignore.url = github:github/gitignore;

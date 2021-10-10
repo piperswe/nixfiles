@@ -47,7 +47,6 @@
       },
       "original": {
         "owner": "nix-community",
-        "ref": "master",
         "repo": "home-manager",
         "type": "github"
       }
@@ -69,23 +68,21 @@
       },
       "original": {
         "owner": "Mic92",
-        "ref": "main",
         "repo": "nix-ld",
         "type": "github"
       }
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1633706237,
-        "narHash": "sha256-xNHCuo9g6r5ehf84YdJi39JJR2QCfeWic8xRc7WmcIY=",
+        "lastModified": 1633836356,
+        "narHash": "sha256-d+RdlT1MAGt/MqcV0yWQ21xpqNdsnxAnX8XdopOycXY=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "18d4025a8ee2f656d897505ccd0ba61a5b89bbea",
+        "rev": "0c416075ae75e17db90c4c48d7394a36a8df824c",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
