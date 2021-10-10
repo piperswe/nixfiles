@@ -5,7 +5,7 @@
     (config.withGUI && !pkgs.stdenv.isAarch32 && !pkgs.stdenv.isi686)
     {
       programs.firefox = {
-        enable = config.withGUI;
+        enable = true;
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
           onepassword-password-manager
           metamask
