@@ -13,12 +13,6 @@
     nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.allowUnfreePackages;
     nixpkgs.overlays = [ overlay nur.overlay ];
     home.packages = with pkgs;
-      let
-        nonARMv6lPackages = [
-          # I work with Nix enough that I want these in my profile
-          cachix
-        ];
-      in
       [
         # I work with Nix enough that I want these in my profile
         nixpkgs-fmt
@@ -40,7 +34,6 @@
         bat-extras.prettybat
         file
         gh
-      ]
-      ++ (lib.optionals (!lib.hasPrefix "armv6l-" stdenv.system) nonARMv6lPackages);
+      ];
   };
 }
