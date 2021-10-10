@@ -16,6 +16,10 @@ nixpkgs.lib.nixosSystem {
 
       services.openssh.enable = true;
 
+      nix.extraOptions = ''
+        extra-platforms = armv6l-linux armv7l-linux
+      '';
+
       hmStateVersion = "21.05";
       system.stateVersion = "21.05";
     })
