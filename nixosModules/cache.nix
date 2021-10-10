@@ -3,7 +3,7 @@
 {
   nix = {
     binaryCaches = [
-      "s3://nix-cache.piperswe.me"
+      "https://nix-cache.piperswe.me"
       "https://nix-community.cachix.org"
     ];
     binaryCachePublicKeys = [
