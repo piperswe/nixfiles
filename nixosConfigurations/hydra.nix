@@ -7,6 +7,7 @@ nixpkgs.lib.nixosSystem {
     nixosModules.proxmox
     nixosModules.pmc-user
     nixosModules.cloudflared
+    nixosModules.buildbox
     ({ config, lib, pkgs, modulesPath, ... }:
       let
         narCache = "/var/cache/hydra/nar-cache";
