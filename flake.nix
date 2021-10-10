@@ -23,15 +23,10 @@
       nixosModules = import ./nixosModules context;
       packages = import ./packages context;
       overlay = import ./packages/overlay.nix context;
-      hydraJobs = let pkgs = import context.nixpkgs {
-        system = "x86_64-linux";
-        config.allowUnfree = true;
-        overlays = [ context.overlay ];
-      }; in
-        {
-          packages = pkgs.lib.mapAttrs (name: value: pkgs.${name}) context.packages.x86_64-linux;
-          configurations = pkgs.lib.mapAttrs (name: value: value.config.system.build.vm) context.nixosConfigurations;
-          installer = context.nixosConfigurations.installer.config.system.build.isoImage;
-        };
+      hydraJobs = {
+        packages = context.packages;
+        configurations = context.nixpkgs.lib.mapAttrs (name: value: value.config.system.build.vm) context.nixosConfigurations;
+        installer = context.nixosConfigurations.installer.config.system.build.isoImage;
+      };
     };
 }
