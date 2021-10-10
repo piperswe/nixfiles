@@ -58,8 +58,6 @@ nixpkgs.lib.nixosSystem {
             "d ${narCache}      0775 hydra hydra 1d -"
           ];
 
-        users.extraUsers.hydra.home = lib.mkForce "/home/hydra";
-
         hmStateVersion = "21.05";
         system.stateVersion = "21.05";
       })
