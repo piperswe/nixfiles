@@ -6,6 +6,7 @@ nixpkgs.lib.nixosSystem {
     nixosModules.proxmox
     nixosModules.development
     nixosModules.pmc-user
+    nixosModules.cloudflared
     ({ config, lib, pkgs, modulesPath, ... }:
       let
         narCache = "/var/cache/hydra/nar-cache";
@@ -39,6 +40,15 @@ nixpkgs.lib.nixosSystem {
             binary_cache_public_uri = https://nix-cache.piperswe.me
             upload_logs_to_binary_cache = true
           '';
+        };
+
+        services.cloudflared = {
+          enable = true;
+          config = {
+            url = "http://localhost:3000";
+            tunnel = "505c8dd1-e4fb-4ea4-b909-26b8f61ceaaf";
+            credentials-file = "/var/lib/cloudflared/505c8dd1-e4fb-4ea4-b909-26b8f61ceaaf.json";
+          };
         };
 
         systemd.tmpfiles.rules =

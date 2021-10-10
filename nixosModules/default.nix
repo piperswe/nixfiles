@@ -2,6 +2,7 @@ context:
 {
   base = import ./base.nix context;
   cache = import ./cache.nix context;
+  cloudflared = import ./cloudflared.nix context;
   desktop = import ./desktop.nix context;
   development = import ./development.nix context;
   nvidia = import ./nvidia.nix context;

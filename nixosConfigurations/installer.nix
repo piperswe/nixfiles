@@ -8,7 +8,6 @@ nixpkgs.lib.nixosSystem {
     ({ modulesPath, ... }: {
       imports = [
         (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix")
-        (modulesPath + "/installer/cd-dvd/channel.nix")
         (modulesPath + "/profiles/qemu-guest.nix")
       ];
     })

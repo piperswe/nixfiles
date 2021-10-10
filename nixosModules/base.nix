@@ -1,6 +1,10 @@
 { nix-ld, overlay, nur, nixosModules, ... }:
-{ pkgs, lib, config, ... }: {
-  imports = [ nix-ld.nixosModules.nix-ld nixosModules.cache ];
+{ pkgs, lib, config, modulesPath, ... }: {
+  imports = [
+    nix-ld.nixosModules.nix-ld
+    nixosModules.cache
+    (modulesPath + "/installer/cd-dvd/channel.nix")
+  ];
   options = {
     allowUnfreePackages = lib.mkOption {
       type = lib.types.listOf lib.types.str;
