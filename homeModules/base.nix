@@ -25,6 +25,7 @@
       ripgrep
       wget
       htop
+      iotop
       bat
       bat-extras.batman
       bat-extras.batgrep
