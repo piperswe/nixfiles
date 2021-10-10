@@ -19,6 +19,7 @@
     let
       context = inputs // inputs.self;
       inherit (context) packages overlay nixpkgs nixosConfigurations homeConfigurations home-manager;
+      inherit (nixpkgs) lib;
     in
     {
       homeConfigurations = import ./homeConfigurations context;
@@ -39,7 +40,46 @@
             in
             nixpkgs.lib.mapAttrs (packageName: package: pkgs.${packageName}) packages)
           packages;
-        nixosConfigurations = nixpkgs.lib.mapAttrs (name: value: value.config.system.build.vm) nixosConfigurations;
+        nixosConfigurations = nixpkgs.lib.mapAttrs
+          (name: value:
+            let
+              inherit (value.config.system) build;
+              getFallbacks = (fallbacks:
+                let
+                  attr = builtins.head fallbacks;
+                in
+                if fallbacks == [ ]
+                then { }
+                else if build ? ${attr}
+                then build.${attr}
+                else getFallbacks (builtins.tail fallbacks));
+            in
+            getFallbacks [
+              # From github:nix-community/nix-generators
+              "amazonImage"
+              "azureImage"
+              "cloudstackImage"
+              "digitalOceanImage"
+              "googleComputeImage"
+              "hypervImage"
+              "isoImage"
+              "kexec_bundle"
+              "kexec_tarball"
+              "metadata"
+              "tarball"
+              "novaImage"
+              "openstackImage"
+              "qcow"
+              "raw"
+              "sdImage"
+              "vagrantVirtualbox"
+              "virtualBoxOVA"
+              "vmwareImage"
+
+              # Last because all configurations generate this
+              "vm"
+            ])
+          nixosConfigurations;
         installer = nixosConfigurations.installer.config.system.build.isoImage;
         homeConfigurations =
           let
