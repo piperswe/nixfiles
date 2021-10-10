@@ -9,11 +9,19 @@ nixpkgs.lib.nixosSystem {
     ({ config, lib, pkgs, modulesPath, ... }:
       let
         narCache = "/var/cache/hydra/nar-cache";
+        # Systems I have a buildbox for
+        nativeSystems = [
+          "x86_64-linux"
+          "i386-linux"
+          # "aarch64-linux"
+          # "armv6l-linux"
+          # "armv7l-linux"
+        ];
+        # Linux-based systems I don't have a buildbox for, so should be emulated
         emulatedSystems = lib.filter
           (x:
             (lib.hasSuffix "-linux" x) &&
-            !(lib.hasPrefix "x86_64-" x) &&
-            !(lib.hasPrefix "i386-" x))
+            !(elem x nativeSystems))
           lib.systems.supported.hydra;
       in
       {
@@ -48,8 +56,14 @@ nixpkgs.lib.nixosSystem {
             hostName = "localhost";
             systems = emulatedSystems ++ [ "builtin" "x86_64-linux" "i386-linux" ];
             supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
-            maxJobs = 8;
+            maxJobs = 4;
           }
+          # {
+          #   hostName = "aarch64-buildbox";
+          #   systems = [ "aarch64-linux" "armv7l-linux" "armv6l-linux" ];
+          #   supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
+          #   maxJobs = 4;
+          # }
         ];
 
         services.cloudflared = {
