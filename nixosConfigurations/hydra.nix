@@ -21,7 +21,7 @@ nixpkgs.lib.nixosSystem {
         emulatedSystems = lib.filter
           (x:
             (lib.hasSuffix "-linux" x) &&
-            !(elem x nativeSystems))
+            !(builtins.elem x nativeSystems))
           lib.systems.supported.hydra;
       in
       {
