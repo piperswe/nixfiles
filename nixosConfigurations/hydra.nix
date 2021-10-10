@@ -4,7 +4,6 @@ nixpkgs.lib.nixosSystem {
   modules = [
     nixosModules.base
     nixosModules.proxmox
-    nixosModules.development
     nixosModules.pmc-user
     nixosModules.cloudflared
     ({ config, lib, pkgs, modulesPath, ... }:
