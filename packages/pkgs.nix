@@ -1,2 +1,4 @@
-pkgs@{ lib, stdenv, ... }:
-{ }
+{ callPackage, ... }:
+{
+  cloudflared = callPackage ./cloudflared.nix { };
+}

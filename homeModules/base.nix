@@ -1,7 +1,7 @@
 { homeModules, overlay, nur, ... }:
 { pkgs, lib, config, ... }:
 {
-  imports = [ homeModules.gui homeModules.zsh homeModules.git homeModules.neovim homeModules.vscode-server ];
+  imports = [ homeModules.gui homeModules.zsh homeModules.git homeModules.neovim ];
   options = {
     allowUnfreePackages = lib.mkOption {
       type = lib.types.listOf lib.types.str;

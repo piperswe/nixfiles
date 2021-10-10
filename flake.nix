@@ -16,8 +16,11 @@
   inputs.hydra.url = github:nixos/hydra;
 
   outputs = inputs:
-    let context = inputs // inputs.self; in
-    rec {
+    let
+      context = inputs // inputs.self;
+      inherit (context) packages nixpkgs nixosConfigurations homeConfigurations home-manager;
+    in
+    {
       homeConfigurations = import ./homeConfigurations context;
       homeModules = import ./homeModules context;
       nixosConfigurations = import ./nixosConfigurations context;
@@ -25,9 +28,28 @@
       packages = import ./packages context;
       overlay = import ./packages/overlay.nix context;
       hydraJobs = {
-        packages = context.packages;
-        nixosConfigurations = context.nixpkgs.lib.mapAttrs (name: value: value.config.system.build.vm) context.nixosConfigurations;
-        installer = context.nixosConfigurations.installer.config.system.build.isoImage;
+        inherit packages;
+        nixosConfigurations = nixpkgs.lib.mapAttrs (name: value: value.config.system.build.vm) nixosConfigurations;
+        installer = nixosConfigurations.installer.config.system.build.isoImage;
+        homeConfigurations =
+          let
+            buildHome = (configuration: system: {
+              base = (home-manager.lib.homeManagerConfiguration {
+                inherit configuration system;
+                homeDirectory = "/home/pmc";
+                username = "pmc";
+              }).config.home.activationPackage;
+            });
+          in
+          context.nixpkgs.lib.mapAttrs
+            (name: value:
+              {
+                x86_64-linux = buildHome value "x86_64-linux";
+                aarch64-linux = buildHome value "aarch64-linux";
+                x86_64-darwin = buildHome value "x86_64-darwin";
+                aarch64-darwin = buildHome value "aarch64-darwin";
+              })
+            homeConfigurations;
       };
     };
 }
