@@ -23,5 +23,9 @@
       nixosModules = import ./nixosModules context;
       packages = import ./packages context;
       overlay = import ./packages/overlay.nix context;
+      hydraJobs = {
+        packages = context.packages;
+        configurations = context.nixosConfigurations;
+      };
     };
 }
