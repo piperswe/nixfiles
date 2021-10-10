@@ -51,6 +51,10 @@ nixpkgs.lib.nixosSystem {
           useSubstitutes = true;
         };
 
+        nix.extraOptions = ''
+          min-free = ${toString (100 * 1024 * 1024 * 1024)}
+          max-free = ${toString (500 * 1024 * 1024 * 1024)}
+        '';
         nix.buildMachines = [
           {
             hostName = "localhost";
