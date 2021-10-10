@@ -95,6 +95,12 @@
                   homeDirectory = "/home/pmc";
                   username = "pmc";
                 }).config.home.activationPackage;
+                gui = (home-manager.lib.homeManagerConfiguration {
+                  inherit configuration system pkgs;
+                  extraModules = [{ withGUI = true; }];
+                  homeDirectory = "/home/pmc";
+                  username = "pmc";
+                }).config.home.activationPackage;
               });
           in
           context.nixpkgs.lib.mapAttrs
