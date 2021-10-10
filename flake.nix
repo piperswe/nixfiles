@@ -111,7 +111,7 @@
                     name = system;
                     value = buildHome value system;
                   })
-                  nixpkgs.lib.systems.supported.hydra)))
+                  context.lib.supported-platforms.hydra)))
             homeConfigurations;
       };
     };

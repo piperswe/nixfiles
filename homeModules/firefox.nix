@@ -2,7 +2,7 @@
 { pkgs, lib, config, ... }:
 {
   config = lib.mkIf
-    (config.withGUI && !pkgs.stdenv.isAarch32 && !pkgs.stdenv.isi686)
+    (config.withGUI && pkgs.stdenv.isLinux && !pkgs.stdenv.isAarch32 && !pkgs.stdenv.isi686)
     {
       programs.firefox = {
         enable = true;

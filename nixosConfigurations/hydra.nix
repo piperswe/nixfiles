@@ -1,4 +1,5 @@
-{ nixpkgs, nixosModules, hydra, ... }:
+{ nixpkgs, nixosModules, hydra, lib, ... }:
+with lib;
 nixpkgs.lib.nixosSystem {
   system = "x86_64-linux";
   modules = [
@@ -22,7 +23,7 @@ nixpkgs.lib.nixosSystem {
           (x:
             (lib.hasSuffix "-linux" x) &&
             !(builtins.elem x nativeSystems))
-          lib.systems.supported.hydra;
+          supported-platforms.hydra;
       in
       {
         networking.hostName = "hydra";
