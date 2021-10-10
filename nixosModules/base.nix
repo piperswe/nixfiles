@@ -21,6 +21,8 @@
       package = pkgs.nixUnstable;
       extraOptions = ''
         experimental-features = nix-command flakes
+        min-free = ${toString (100 * 1024 * 1024 * 1024)}
+        max-free = ${toString (500 * 1024 * 1024 * 1024)}
       '';
       registry = {
         nixfiles = {
@@ -40,10 +42,6 @@
         automatic = true;
         dates = "weekly";
       };
-      extraOptions = ''
-        min-free = ${toString (100 * 1024 * 1024 * 1024)}
-        max-free = ${toString (500 * 1024 * 1024 * 1024)}
-      '';
     };
     nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.allowUnfreePackages;
     nixpkgs.overlays = [ overlay nur.overlay ];
