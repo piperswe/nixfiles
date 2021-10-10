@@ -99,12 +99,13 @@
           in
           context.nixpkgs.lib.mapAttrs
             (name: value:
-              {
-                x86_64-linux = buildHome value "x86_64-linux";
-                aarch64-linux = buildHome value "aarch64-linux";
-                x86_64-darwin = buildHome value "x86_64-darwin";
-                aarch64-darwin = buildHome value "aarch64-darwin";
-              })
+              (builtins.listToAttrs
+                (builtins.map
+                  (system: {
+                    name = system;
+                    value = buildHome value system;
+                  })
+                  lib.systems.supported.hydra)))
             homeConfigurations;
       };
     };
