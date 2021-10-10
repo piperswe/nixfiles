@@ -13,11 +13,7 @@
   inputs.nur.inputs.nixpkgs.follows = "nixpkgs";
   inputs.vscode-server.url = github:msteen/nixos-vscode-server;
   inputs.vscode-server.flake = false;
-  inputs.nix.url = github:nixos/nix;
-  inputs.nix.inputs.nixpkgs.follows = "nixpkgs";
   inputs.hydra.url = github:nixos/hydra;
-  inputs.hydra.inputs.nixpkgs.follows = "nixpkgs";
-  inputs.hydra.inputs.nix.follows = "nix";
 
   outputs = inputs:
     let context = inputs // inputs.self; in
