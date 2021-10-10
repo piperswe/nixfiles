@@ -18,7 +18,7 @@
   outputs = inputs:
     let
       context = inputs // inputs.self;
-      inherit (context) packages nixpkgs nixosConfigurations homeConfigurations home-manager;
+      inherit (context) packages overlay nixpkgs nixosConfigurations homeConfigurations home-manager;
     in
     {
       homeConfigurations = import ./homeConfigurations context;
@@ -28,18 +28,35 @@
       packages = import ./packages context;
       overlay = import ./packages/overlay.nix context;
       hydraJobs = {
-        inherit packages;
+        packages = nixpkgs.lib.mapAttrs
+          (system: packages:
+            let
+              pkgs = import nixpkgs {
+                inherit system;
+                config.allowUnfree = true;
+                overlays = [ overlay ];
+              };
+            in
+            nixpkgs.lib.mapAttrs (packageName: package: pkgs.${packageName}) packages)
+          packages;
         nixosConfigurations = nixpkgs.lib.mapAttrs (name: value: value.config.system.build.vm) nixosConfigurations;
         installer = nixosConfigurations.installer.config.system.build.isoImage;
         homeConfigurations =
           let
-            buildHome = (configuration: system: {
-              base = (home-manager.lib.homeManagerConfiguration {
-                inherit configuration system;
-                homeDirectory = "/home/pmc";
-                username = "pmc";
-              }).config.home.activationPackage;
-            });
+            buildHome = (configuration: system:
+              let pkgs = import nixpkgs {
+                inherit system;
+                config.allowUnfree = true;
+                overlays = [ overlay ];
+              };
+              in
+              {
+                base = (home-manager.lib.homeManagerConfiguration {
+                  inherit configuration system pkgs;
+                  homeDirectory = "/home/pmc";
+                  username = "pmc";
+                }).config.home.activationPackage;
+              });
           in
           context.nixpkgs.lib.mapAttrs
             (name: value:
