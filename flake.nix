@@ -80,7 +80,6 @@
               "vm"
             ])
           nixosConfigurations;
-        installer = nixosConfigurations.installer.config.system.build.isoImage;
         homeConfigurations =
           let
             buildHome = (configuration: system:
