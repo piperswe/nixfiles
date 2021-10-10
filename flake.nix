@@ -25,7 +25,8 @@
       overlay = import ./packages/overlay.nix context;
       hydraJobs = {
         packages = context.packages;
-        configurations = context.nixosConfigurations;
+        configurations = context.nixpkgs.lib.mapAttrs (name: value: value.config.system.build.vm) context.nixosConfigurations;
+        installer = context.nixosConfigurations.installer.config.system.build.isoImage;
       };
     };
 }
