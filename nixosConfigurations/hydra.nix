@@ -50,6 +50,7 @@ nixpkgs.lib.nixosSystem {
             credentials-file = "/var/lib/cloudflared/505c8dd1-e4fb-4ea4-b909-26b8f61ceaaf.json";
           };
         };
+        allowUnfreePackages = [ "cloudflared" ];
 
         systemd.tmpfiles.rules =
           [
