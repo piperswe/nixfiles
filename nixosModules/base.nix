@@ -40,7 +40,7 @@
         automatic = true;
         dates = "weekly";
       };
-      nix.extraOptions = ''
+      extraOptions = ''
         min-free = ${toString (100 * 1024 * 1024 * 1024)}
         max-free = ${toString (500 * 1024 * 1024 * 1024)}
       '';
