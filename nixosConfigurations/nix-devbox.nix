@@ -11,6 +11,8 @@ nixpkgs.lib.nixosSystem {
 
       boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
+      fileSystems."/".device = "/dev/disk/by-uuid/86837245-9314-4eda-8c6f-8fa40212a347";
+
       networking.useDHCP = false;
       networking.interfaces.ens18.useDHCP = true;
 

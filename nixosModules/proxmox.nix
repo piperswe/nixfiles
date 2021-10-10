@@ -13,7 +13,7 @@
 
   fileSystems."/" =
     {
-      device = "/dev/disk/by-uuid/86837245-9314-4eda-8c6f-8fa40212a347";
+      device = lib.mkDefault "/dev/disk/by-uuid/cb8f5d4f-bdaa-47db-9be6-1d1e8cb627af";
       fsType = "ext4";
     };
 
