@@ -10,18 +10,18 @@ nixpkgs.lib.nixosSystem {
     ({ config, lib, pkgs, modulesPath, ... }:
       let
         narCache = "/var/cache/hydra/nar-cache";
+        emulatedSystems = lib.filter
+          (x:
+            (lib.hasSuffix "-linux" x) &&
+            !(lib.hasPrefix "x86_64-" x) &&
+            !(lib.hasPrefix "i386-" x))
+          lib.systems.supported.hydra;
       in
       {
         networking.hostName = "hydra";
         networking.domain = "piperswe.me";
 
-        boot.binfmt.emulatedSystems =
-          lib.filter
-            (x:
-              (lib.hasSuffix "-linux" x) &&
-              !(lib.hasPrefix "x86_64-" x) &&
-              !(lib.hasPrefix "i386-" x))
-            lib.systems.supported.hydra;
+        boot.binfmt.emulatedSystems = emulatedSystems;
 
         networking.useDHCP = false;
         networking.interfaces.ens18.useDHCP = true;
@@ -41,13 +41,12 @@ nixpkgs.lib.nixosSystem {
             upload_logs_to_binary_cache = true
           '';
           useSubstitutes = true;
-          buildMachinesFiles = [ ];
         };
 
         nix.buildMachines = [
           {
             hostName = "localhost";
-            system = "x86_64-linux";
+            systems = emulatedSystems ++ [ "builtin" "x86_64-linux" "i386-linux" ];
             supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
             maxJobs = 8;
           }
