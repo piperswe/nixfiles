@@ -31,7 +31,7 @@
         serviceConfig = {
           TimeoutStartSec = 0;
           Type = "notify";
-          ExecStart = "${cfg.package}/bin/cloudflared --config ${configFile}";
+          ExecStart = "${cfg.package}/bin/cloudflared --config ${configFile} --no-autoupdate tunnel run";
           Restart = "on-failure";
           RestartSec = "5s";
         };
