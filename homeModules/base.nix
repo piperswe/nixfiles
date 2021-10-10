@@ -25,7 +25,6 @@
       ripgrep
       wget
       htop
-      iotop
       bat
       bat-extras.batman
       bat-extras.batgrep
@@ -34,6 +33,9 @@
       bat-extras.prettybat
       file
       gh
-    ];
+    ] ++ (lib.optionals pkgs.stdenv.isLinux (with pkgs; [
+      # These are universally usable system utilities that only work on Linux
+      iotop
+    ]));
   };
 }
