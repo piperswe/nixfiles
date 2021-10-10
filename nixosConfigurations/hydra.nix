@@ -7,7 +7,6 @@ nixpkgs.lib.nixosSystem {
     nixosModules.development
     nixosModules.pmc-user
     nixosModules.cloudflared
-    hydra.nixosModules.hydra
     ({ config, lib, pkgs, modulesPath, ... }:
       let
         narCache = "/var/cache/hydra/nar-cache";
@@ -31,8 +30,9 @@ nixpkgs.lib.nixosSystem {
 
         services.openssh.enable = true;
 
-        services.hydra-dev = {
+        services.hydra = {
           enable = true;
+          package = hydra.defaultPackage.${pkgs.stdenv.system};
           hydraURL = "http://localhost:3000";
           notificationSender = "hydra@piperswe.me";
           extraConfig = ''
