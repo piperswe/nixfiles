@@ -5,6 +5,7 @@ nixpkgs.lib.nixosSystem {
   modules = [
     nixosModules.base
     nixosModules.cache
+    nixosModules.pmc-user
     ({ modulesPath, ... }: {
       imports = [
         (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix")
