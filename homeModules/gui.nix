@@ -1,9 +1,12 @@
 { homeModules, ... }:
-{ pkgs, config, ... }:
+{ pkgs, lib, config, ... }:
 {
   imports = [ homeModules.firefox ];
-  home.packages =
-    if config.withGUI then with pkgs; [
+  options = {
+    withGUI = lib.mkEnableOption "GUI";
+  };
+  config = lib.mkIf config.withGUI {
+    home.packages = with pkgs; [
       tdesktop
       _1password-gui
       plexamp
@@ -13,6 +16,7 @@
       vscodium
       josm
       vlc
-    ] else [ ];
-  allowUnfreePackages = [ "1password" "plexamp" "steam" "steam-original" "steam-runtime" ];
+    ];
+    allowUnfreePackages = [ "1password" "plexamp" "steam" "steam-original" "steam-runtime" ];
+  };
 }

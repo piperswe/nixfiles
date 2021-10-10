@@ -13,9 +13,6 @@
           "${gitignore}/Global/Linux.gitignore"
           "${gitignore}/Global/JetBrains.gitignore"
           "${gitignore}/Global/Mercurial.gitignore"
-          "${gitignore}/Global/LibreOffice.gitignore"
-          "${gitignore}/Global/Ninja.gitignore"
-          "${gitignore}/Global/SublimeText.gitignore"
           "${gitignore}/Global/Vim.gitignore"
           "${gitignore}/Global/VisualStudioCode.gitignore"
         ];

@@ -7,7 +7,6 @@
       type = lib.types.listOf lib.types.str;
       default = [ ];
     };
-    withGUI = lib.mkEnableOption "GUI";
   };
   config = {
     programs.home-manager.enable = true;
