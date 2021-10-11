@@ -38,5 +38,6 @@ with lib;
           gh
           openssh
         ];
+    programs.gpg.enable = true;
   };
 }
