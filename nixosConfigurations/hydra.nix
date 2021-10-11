@@ -53,10 +53,6 @@ nixpkgs.lib.nixosSystem {
           useSubstitutes = true;
         };
 
-        nix.extraOptions = ''
-          min-free = ${toString (100 * 1024 * 1024 * 1024)}
-          max-free = ${toString (500 * 1024 * 1024 * 1024)}
-        '';
         nix.buildMachines = [
           {
             hostName = "localhost";
@@ -71,6 +67,18 @@ nixpkgs.lib.nixosSystem {
           #   maxJobs = 4;
           # }
         ];
+
+        # programs.ssh.extraConfig = lib.mkAfter ''
+        #   Host aarch64-buildbox
+        #   Hostname 192.168.0.0
+        #   Port 22
+        #   Compression yes
+        # '';
+
+        # services.openssh.knownHosts = [
+        #   # aarch64-buildbox
+        #   { hostNames = [ "192.168.0.0" ]; publicKey = ""; }
+        # ];
 
         services.cloudflared = {
           enable = true;

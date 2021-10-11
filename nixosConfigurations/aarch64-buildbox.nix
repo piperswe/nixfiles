@@ -5,13 +5,9 @@ nixpkgs.lib.nixosSystem {
     nixosModules.base
     nixosModules.pmc-user
     nixosModules.buildbox
+    nixosModules.pi4
     ({ config, lib, pkgs, modulesPath, ... }: {
-      imports = [ "${modulesPath}/installer/sd-card/sd-image-aarch64.nix" ];
-
       networking.hostName = "aarch64-buildbox";
-
-      networking.useDHCP = false;
-      networking.interfaces.ens18.useDHCP = true;
 
       time.timeZone = "America/Chicago";
 
