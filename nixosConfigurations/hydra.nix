@@ -49,6 +49,7 @@ nixpkgs.lib.nixosSystem {
             server_store_uri = https://nix-cache.piperswe.me?local-nar-cache=${narCache}
             binary_cache_public_uri = https://nix-cache.piperswe.me
             upload_logs_to_binary_cache = true
+            max_output_size = 17179869184
           '';
           useSubstitutes = true;
         };
