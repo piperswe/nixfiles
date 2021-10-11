@@ -1,5 +1,5 @@
 { nix-ld, overlay, nur, nixosModules, ... }:
-{ pkgs, lib, config, modulesPath, ... }: {
+{ pkgs, lib, config, options, modulesPath, ... }: {
   imports = [
     # Figure out a way to disable this on non-x86_64-linux
     # nix-ld.nixosModules.nix-ld
@@ -69,7 +69,19 @@
         ];
       };
     };
-    services.chrony.enable = true;
+    services.chrony = {
+      enable = true;
+      servers = [
+        "time.cloudflare.com"
+        # On devices without an RTC, dnscrypt-proxy2 requires the time to download its public resolvers list,
+        # but Chrony requires DNS to resolve the NTP server's address. These are the IP addresses of
+        # time.cloudflare.com; maybe I'll add a local resolver at some point to get around this.
+        "162.159.200.1"
+        "162.159.200.123"
+        "[2606:4700:f1::1]:123"
+        "[2606:4700:f1::123]:123"
+      ];
+    };
     # Forward loopback traffic on port 53 to dnscrypt-proxy2.
     networking.firewall.extraCommands = ''
       ip6tables --table nat --flush OUTPUT
