@@ -2,7 +2,14 @@
 with lib;
 { pkgs, lib, config, ... }:
 {
-  imports = [ homeModules.gui homeModules.zsh homeModules.fish homeModules.git homeModules.neovim ];
+  imports = [
+    homeModules.gui
+    homeModules.zsh
+    homeModules.fish
+    homeModules.git
+    homeModules.neovim
+    homeModules.ssh
+  ];
   options = {
     allowUnfreePackages = lib.mkOption {
       type = lib.types.listOf lib.types.str;

@@ -7,6 +7,7 @@ context:
   git = import ./git.nix context;
   gui = import ./gui.nix context;
   neovim = import ./neovim.nix context;
+  ssh = import ./ssh.nix context;
   vscode-server = import ./vscode-server.nix context;
   zsh = import ./zsh.nix context;
 }

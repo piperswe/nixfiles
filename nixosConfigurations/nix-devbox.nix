@@ -6,6 +6,7 @@ nixpkgs.lib.nixosSystem {
     nixosModules.proxmox
     nixosModules.development
     nixosModules.pmc-user
+    nixosModules.homebase
     ({ config, lib, pkgs, modulesPath, ... }: {
       networking.hostName = "nix-devbox";
 

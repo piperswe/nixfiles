@@ -6,6 +6,7 @@ nixpkgs.lib.nixosSystem {
     nixosModules.pmc-user
     nixosModules.buildbox
     nixosModules.pi4
+    nixosModules.homebase
     ({ config, lib, pkgs, modulesPath, ... }: {
       networking.hostName = "aarch64-buildbox";
 
