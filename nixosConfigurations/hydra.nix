@@ -45,7 +45,7 @@ nixpkgs.lib.nixosSystem {
           hydraURL = "http://localhost:3000";
           notificationSender = "hydra@piperswe.me";
           extraConfig = ''
-            store_uri = s3://nix-cache.piperswe.me?secret-key=/var/lib/hydra/queue-runner/keys/nix-cache.piperswe.me/secret&write-nar-listing=1&ls-compression=br&log-compression=br
+            store_uri = s3://nix-cache.piperswe.me?secret-key=/var/lib/hydra/queue-runner/keys/nix-cache.piperswe.me/secret&write-nar-listing=1&ls-compression=xz&log-compression=xz&compression=xz&parallel-compression=1
             server_store_uri = https://nix-cache.piperswe.me?local-nar-cache=${narCache}
             binary_cache_public_uri = https://nix-cache.piperswe.me
             upload_logs_to_binary_cache = true
