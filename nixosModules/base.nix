@@ -69,6 +69,15 @@
         ];
       };
     };
+    # Forward loopback traffic on port 53 to dnscrypt-proxy2.
+    networking.firewall.extraCommands = ''
+      ip6tables --table nat --flush OUTPUT
+      ${lib.flip (lib.concatMapStringsSep "\n") [ "udp" "tcp" ] (proto: ''
+        ip6tables --table nat --append OUTPUT \
+          --protocol ${proto} --destination ::1 --destination-port 53 \
+          --jump REDIRECT --to-ports 51
+      '')}
+    '';
     services.chrony = {
       enable = true;
       servers = [
@@ -82,15 +91,7 @@
         "[2606:4700:f1::123]:123"
       ];
     };
-    # Forward loopback traffic on port 53 to dnscrypt-proxy2.
-    networking.firewall.extraCommands = ''
-      ip6tables --table nat --flush OUTPUT
-      ${lib.flip (lib.concatMapStringsSep "\n") [ "udp" "tcp" ] (proto: ''
-        ip6tables --table nat --append OUTPUT \
-          --protocol ${proto} --destination ::1 --destination-port 53 \
-          --jump REDIRECT --to-ports 51
-      '')}
-    '';
+    programs.command-not-found.enable = true;
     services.ipfs.enable = true;
   };
 }
