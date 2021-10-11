@@ -51,7 +51,6 @@ nixpkgs.lib.nixosSystem {
             upload_logs_to_binary_cache = true
             max_output_size = 17179869184
             compress_num_threads = 8
-            evaluator_workers = 8
           '';
           useSubstitutes = true;
         };
