@@ -77,11 +77,12 @@ nixpkgs.lib.nixosSystem {
           Port 22
         '';
 
-        services.openssh.knownHosts = [
-          # aarch64-buildbox
-          { hostNames = [ "192.168.0.132" "aarch64-buildbox" ]; publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMI7Y4XN3/uZqK8S4koYh+9jVevTkOhTY6efQ6JNgroe"; }
-          { hostNames = [ "192.168.0.132" "aarch64-buildbox" ]; publicKey = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC1fjlKjXNqlWHYCraEs9Ktwrn/FKNAZYk8O42Bn8fAMsOj3Hbliml69qdeNW7yYTafcTkOHa1ApEdzP3HYwQgnxXW0IU1MWDQ+cxgah84bI99qskxK4fFjFHOacjhnsNNpdUZlYwvpaUN+SKl66LEt42eRUbQxlGPpYsxtyU+w0axccea8Qe98404n+X4wQfk/ijBiZi7HdM/6dFh/vWPm+SxMCS1bWp5VoOpHXjZ9GdAXmA/U2YRIICBFIHZvGzUN7JNuctTi0pVxr/kmfbvZ0azgEc5wqSxt3kPj/Q+7Hsi/FT/J5H+g3qddfonkPJO/+1HdNLVRNBIUCDCvEoHbtF9TH87pvtKGzLQ+099gIO98nx1aJPNtzzuEfKLfYxOlFLy9VTJJ+o2LHF0zlx3cJn4+LEiinhIe82BKZqs9FzkRgaZ+dZknOOergUnSBu0YR2KrgtpI7TcGiPIynbMTPgB4iqPyK7S2mpY0LXBmoyxNQbbDf04D1yU8mWlr3jdxr1ST5hy/DNmyRnSpc8NA5a4VTcDYTxE6C8BOCmELPH7lmIK5Wz7l0UNRXW6z+vFzObyOf2ohHJ8Js01S1x5f7Cz6TzPHVHKdHu7FHWXjnaT3QjpTQg5LMO3DxGpfuQ6u/VWlbn0xeuWoGg7lj9wxx+8KAJzBHE2Js+wPKfo8ew=="; }
-        ];
+        services.openssh.knownHosts = {
+          aarch64-buildbox = {
+            hostNames = [ "192.168.0.132" "aarch64-buildbox" ];
+            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMI7Y4XN3/uZqK8S4koYh+9jVevTkOhTY6efQ6JNgroe";
+          };
+        };
 
         services.cloudflared = {
           enable = true;
