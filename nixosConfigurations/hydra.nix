@@ -50,6 +50,8 @@ nixpkgs.lib.nixosSystem {
             binary_cache_public_uri = https://nix-cache.piperswe.me
             upload_logs_to_binary_cache = true
             max_output_size = 17179869184
+            compress_num_threads = 8
+            evaluator_workers = 8
           '';
           useSubstitutes = true;
         };
