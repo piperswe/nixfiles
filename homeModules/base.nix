@@ -36,6 +36,7 @@ with lib;
           bat-extras.prettybat
           file
           gh
+          openssh
         ];
   };
 }
