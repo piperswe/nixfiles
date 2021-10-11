@@ -14,6 +14,8 @@
   inputs.vscode-server.url = github:msteen/nixos-vscode-server;
   inputs.vscode-server.flake = false;
   inputs.hydra.url = github:nixos/hydra;
+  inputs.fish-theme-sushi.url = github:umayr/theme-sushi;
+  inputs.fish-theme-sushi.flake = false;
 
   outputs = inputs:
     let

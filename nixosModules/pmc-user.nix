@@ -5,7 +5,7 @@
     nix.trustedUsers = [ "pmc" ];
     users.users.pmc = {
       isNormalUser = true;
-      shell = pkgs.zsh;
+      shell = pkgs.fish;
       extraGroups = [
         "wheel"
         "networkmanager"

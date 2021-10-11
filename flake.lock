@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "fish-theme-sushi": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1632077084,
+        "narHash": "sha256-kKd2DADh1rerfwA/Da+/43xi8U8JYaWVvyS4vReGcIM=",
+        "owner": "umayr",
+        "repo": "theme-sushi",
+        "rev": "2bd0236872de5c05f9eab7840cc90f836dd0e3c6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "umayr",
+        "repo": "theme-sushi",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "locked": {
         "lastModified": 1631561581,
@@ -177,6 +193,7 @@
     },
     "root": {
       "inputs": {
+        "fish-theme-sushi": "fish-theme-sushi",
         "flake-utils": "flake-utils",
         "gitignore": "gitignore",
         "home-manager": "home-manager",

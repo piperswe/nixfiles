@@ -2,7 +2,7 @@
 with lib;
 { pkgs, lib, config, ... }:
 {
-  imports = [ homeModules.gui homeModules.zsh homeModules.git homeModules.neovim ];
+  imports = [ homeModules.gui homeModules.zsh homeModules.fish homeModules.git homeModules.neovim ];
   options = {
     allowUnfreePackages = lib.mkOption {
       type = lib.types.listOf lib.types.str;
@@ -38,7 +38,6 @@ with lib;
           gh
           openssh
           silver-searcher
-          gitFull
         ];
     programs.gpg.enable = true;
   };
