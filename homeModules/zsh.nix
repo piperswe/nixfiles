@@ -1,5 +1,5 @@
 { ... }:
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   programs.zsh = {
     enable = true;
@@ -8,9 +8,15 @@
       ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
       source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
     '';
-    oh-my-zsh = {
+    ohMyZsh = {
       enable = true;
-      theme = "fishy";
+      theme = "ys";
+      plugins = [
+        "ag"
+        "command-not-found"
+        "git"
+        "kubectl"
+      ] ++ (lib.optionals pkgs.stdenv.isDarwin [ "brew" "iterm2" ]);
     };
   };
 }

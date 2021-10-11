@@ -37,6 +37,9 @@ with lib;
           file
           gh
           openssh
+          silver-searcher
+          command-not-found
+          gitFull
         ];
     programs.gpg.enable = true;
   };
