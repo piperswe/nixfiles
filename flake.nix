@@ -55,29 +55,31 @@
                 else getFallbacks (builtins.tail fallbacks));
             in
             getFallbacks [
-              # From github:nix-community/nix-generators
-              "amazonImage"
-              "azureImage"
-              "cloudstackImage"
-              "digitalOceanImage"
-              "googleComputeImage"
-              "hypervImage"
-              "isoImage"
-              "kexec_bundle"
-              "kexec_tarball"
-              "metadata"
-              "tarball"
-              "novaImage"
-              "openstackImage"
-              "qcow"
-              "raw"
-              "sdImage"
-              "vagrantVirtualbox"
-              "virtualBoxOVA"
-              "vmwareImage"
+              "toplevel"
 
-              # Last because all configurations generate this
-              "vm"
+              # # From github:nix-community/nix-generators
+              # "amazonImage"
+              # "azureImage"
+              # "cloudstackImage"
+              # "digitalOceanImage"
+              # "googleComputeImage"
+              # "hypervImage"
+              # "isoImage"
+              # "kexec_bundle"
+              # "kexec_tarball"
+              # "metadata"
+              # "tarball"
+              # "novaImage"
+              # "openstackImage"
+              # "qcow"
+              # "raw"
+              # "sdImage"
+              # "vagrantVirtualbox"
+              # "virtualBoxOVA"
+              # "vmwareImage"
+
+              # # Last because all configurations generate this
+              # "vm"
             ])
           nixosConfigurations;
         homeConfigurations =
