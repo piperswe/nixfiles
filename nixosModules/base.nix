@@ -1,4 +1,4 @@
-{ nix-ld, overlay, nur, nixosModules, ... }:
+{ nixpkgs, nix-ld, overlay, nur, nixosModules, ... }:
 { pkgs, lib, config, options, modulesPath, ... }: {
   imports = [
     # Figure out a way to disable this on non-x86_64-linux
@@ -36,6 +36,9 @@
           };
         };
       };
+      nixPath = lib.mkForce [
+        "nixpkgs=${nixpkgs}"
+      ];
       autoOptimiseStore = true;
       gc = {
         automatic = true;

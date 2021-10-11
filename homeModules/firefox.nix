@@ -21,7 +21,6 @@
             name = "Piper";
             id = 0;
             settings = {
-              "network.trr.mode" = 5;
               "gfx.webrender.all" = true;
             };
           };
