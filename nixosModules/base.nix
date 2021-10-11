@@ -69,6 +69,7 @@
         ];
       };
     };
+    services.chrony.enable = true;
     # Forward loopback traffic on port 53 to dnscrypt-proxy2.
     networking.firewall.extraCommands = ''
       ip6tables --table nat --flush OUTPUT
