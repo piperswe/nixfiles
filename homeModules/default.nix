@@ -1,5 +1,6 @@
 context:
 {
+  alacritty = import ./alacritty.nix context;
   base = import ./base.nix context;
   firefox = import ./firefox.nix context;
   git = import ./git.nix context;

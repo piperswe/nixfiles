@@ -2,7 +2,7 @@
 with lib;
 { pkgs, lib, config, ... }:
 {
-  imports = [ homeModules.firefox ];
+  imports = [ homeModules.firefox homeModules.alacritty ];
   options = {
     withGUI = lib.mkEnableOption "GUI";
   };
