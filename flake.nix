@@ -117,6 +117,13 @@
                   })
                   context.lib.supported-platforms.hydra)))
             homeConfigurations;
+        checks = (builtins.listToAttrs
+          (builtins.map
+            (system: {
+              name = system;
+              value = import ./checks context system;
+            })
+            context.lib.supported-platforms.hydra));
       };
     };
 }
