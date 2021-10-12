@@ -76,7 +76,6 @@ nixpkgs.lib.nixosSystem {
           Host aarch64-buildbox
           Hostname 192.168.0.132
           Port 22
-          User root
         '';
 
         services.openssh.knownHosts = {
