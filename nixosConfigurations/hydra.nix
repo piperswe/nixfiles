@@ -1,5 +1,11 @@
 { nixpkgs, nixosModules, hydra, lib, ... }:
 with lib;
+let
+  pkgsMaster = import nixpkgs-master {
+    system = "x86_64-linux";
+    config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "cloudflared" ];
+  };
+in
 nixpkgs.lib.nixosSystem {
   system = "x86_64-linux";
   modules = [
@@ -95,6 +101,7 @@ nixpkgs.lib.nixosSystem {
 
         services.cloudflared = {
           enable = true;
+          package = pkgsMaster.cloudflared;
           config = {
             url = "http://localhost:3000";
             tunnel = "505c8dd1-e4fb-4ea4-b909-26b8f61ceaaf";

@@ -140,6 +140,21 @@
         "type": "indirect"
       }
     },
+    "nixpkgs-master": {
+      "locked": {
+        "lastModified": 1634022525,
+        "narHash": "sha256-5WRoEiko7pZRpnv9qdO+Uo9n9ADbLYpPE13CLWBMgCk=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "9242369aee002201760b10cda99b2be0e691d6d1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1633329294,
@@ -179,6 +194,7 @@
         "home-manager": "home-manager",
         "hydra": "hydra",
         "nixpkgs": "nixpkgs_2",
+        "nixpkgs-master": "nixpkgs-master",
         "nur": "nur",
         "vscode-server": "vscode-server"
       }

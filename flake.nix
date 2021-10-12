@@ -6,6 +6,8 @@
 
     nixpkgs = { url = github:nixos/nixpkgs/nixpkgs-unstable; };
 
+    nixpkgs-master = { url = github:nixos/nixpkgs; };
+
     nur = {
       url = github:nix-community/nur;
       inputs.nixpkgs.follows = "nixpkgs";

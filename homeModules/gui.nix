@@ -1,6 +1,12 @@
-{ homeModules, lib, ... }:
+{ homeModules, nixpkgs-master, lib, ... }:
 with lib;
 { pkgs, lib, config, ... }:
+let
+  pkgsMaster = import nixpkgs-master {
+    system = pkgs.stdenv.system;
+    config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "plexamp" ];
+  };
+in
 {
   imports = [ homeModules.firefox homeModules.alacritty ];
   options = {
@@ -16,7 +22,7 @@ with lib;
           { compatible = stdenv.isLinux && stdenv.system != "armv6l-linux"; pkg = tdesktop; }
           { compatible = stdenv.isLinux && !stdenv.isAarch32; pkg = vlc; }
           { compatible = x86_64-linux; pkg = _1password-gui; }
-          { compatible = x86_64-linux; pkg = plexamp; }
+          { compatible = x86_64-linux; pkg = pkgsMaster.plexamp; }
           { compatible = x86_64-linux; pkg = steam; }
           { compatible = x86_64-linux; pkg = steam-run; }
           { compatible = x86_64-linux; pkg = yubioath-desktop; }
