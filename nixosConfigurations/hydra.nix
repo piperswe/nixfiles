@@ -3,7 +3,7 @@ with lib;
 let
   pkgsMaster = import nixpkgs-master {
     system = "x86_64-linux";
-    config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "cloudflared" ];
+    config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [ "cloudflared" ];
   };
 in
 nixpkgs.lib.nixosSystem {
