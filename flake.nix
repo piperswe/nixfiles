@@ -4,7 +4,7 @@
   inputs = {
     flake-utils = { url = github:numtide/flake-utils; };
 
-    nixpkgs = { url = github:nixos/nixpkgs; };
+    nixpkgs = { url = github:nixos/nixpkgs/nixpkgs-unstable; };
 
     nur = {
       url = github:nix-community/nur;
