@@ -16,7 +16,7 @@ nixpkgs.lib.nixosSystem {
         # Systems I have a buildbox for
         nativeSystems = [
           "x86_64-linux"
-          "i386-linux"
+          "i686-linux"
           "aarch64-linux"
           "armv6l-linux"
           "armv7l-linux"
@@ -61,7 +61,7 @@ nixpkgs.lib.nixosSystem {
         nix.buildMachines = [
           {
             hostName = "localhost";
-            systems = emulatedSystems ++ [ "builtin" "x86_64-linux" "i386-linux" ];
+            systems = emulatedSystems ++ [ "builtin" "x86_64-linux" "i686-linux" ];
             supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
             maxJobs = 4;
             sshKey = "/var/lib/hydra/queue-runner/.ssh/id_ed25519";
