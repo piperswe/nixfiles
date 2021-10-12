@@ -1,4 +1,4 @@
-{ nixpkgs, overlay, nur, nix, nixosModules, ... }:
+{ nixpkgs, overlay, nur, nixosModules, ... }:
 { pkgs, lib, config, options, modulesPath, ... }: {
   imports = [
     nixosModules.cache

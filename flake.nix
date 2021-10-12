@@ -37,7 +37,7 @@
   outputs = inputs:
     let
       context = inputs // inputs.self // { root = ./.; };
-      inherit (context) packages overlay nixpkgs nixosConfigurations homeConfigurations home-manager nix nur;
+      inherit (context) packages overlay nixpkgs nixosConfigurations homeConfigurations home-manager nur;
     in
     {
       lib = import ./lib context;
@@ -54,7 +54,7 @@
               pkgs = import nixpkgs {
                 inherit system;
                 config.allowUnfree = true;
-                overlays = [ nix.overlay nur.overlay overlay ];
+                overlays = [ nur.overlay overlay ];
               };
             in
             nixpkgs.lib.mapAttrs (packageName: package: pkgs.${packageName}) packages)
@@ -107,7 +107,7 @@
               let pkgs = import nixpkgs {
                 inherit system;
                 config.allowUnfree = true;
-                overlays = [ nix.overlay nur.overlay overlay ];
+                overlays = [ nur.overlay overlay ];
               };
               in
               {
