@@ -7,6 +7,7 @@ nixpkgs.lib.nixosSystem {
     nixosModules.development
     nixosModules.pmc-user
     nixosModules.homebase
+    nixosModules.auto-upgrade
     ({ config, lib, pkgs, modulesPath, ... }: {
       networking.hostName = "nix-devbox";
 

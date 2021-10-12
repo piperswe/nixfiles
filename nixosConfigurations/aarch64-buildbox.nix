@@ -7,6 +7,7 @@ nixpkgs.lib.nixosSystem {
     nixosModules.buildbox
     nixosModules.pi4
     nixosModules.homebase
+    nixosModules.auto-upgrade
     ({ config, lib, pkgs, modulesPath, ... }: {
       networking.hostName = "aarch64-buildbox";
 

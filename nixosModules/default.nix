@@ -1,5 +1,6 @@
 context:
 {
+  auto-upgrade = import ./auto-upgrade.nix context;
   base = import ./base.nix context;
   buildbox = import ./buildbox.nix context;
   cache = import ./cache.nix context;

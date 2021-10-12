@@ -9,6 +9,7 @@ nixpkgs.lib.nixosSystem {
     nixosModules.cloudflared
     nixosModules.buildbox
     nixosModules.homebase
+    nixosModules.auto-upgrade
     ({ config, lib, pkgs, modulesPath, ... }:
       let
         narCache = "/var/cache/hydra/nar-cache";
