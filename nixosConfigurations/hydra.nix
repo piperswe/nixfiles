@@ -57,26 +57,29 @@ nixpkgs.lib.nixosSystem {
           useSubstitutes = true;
         };
 
+        nix.distributedBuilds = true;
         nix.buildMachines = [
           {
             hostName = "localhost";
             systems = emulatedSystems ++ [ "builtin" "x86_64-linux" "i386-linux" ];
             supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
             maxJobs = 4;
+            sshKey = "/root/.ssh/id_ed25519";
+            sshUser = "hydra-remote-queue-runner";
           }
           {
             hostName = "aarch64-buildbox";
             systems = [ "aarch64-linux" "armv7l-linux" "armv6l-linux" ];
             supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
             maxJobs = 4;
+            sshKey = "/root/.ssh/id_ed25519";
+            sshUser = "hydra-remote-queue-runner";
           }
         ];
 
         programs.ssh.extraConfig = lib.mkAfter ''
           Host aarch64-buildbox
           Hostname 192.168.0.132
-          Port 22
-          User hydra-remote-queue-runner
         '';
 
         services.openssh.knownHosts = {
