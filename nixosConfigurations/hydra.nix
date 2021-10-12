@@ -1,4 +1,4 @@
-{ nixpkgs, nixosModules, hydra, lib, ... }:
+{ nixpkgs, nixpkgs-master, nixosModules, hydra, lib, ... }:
 with lib;
 let
   pkgsMaster = import nixpkgs-master {
