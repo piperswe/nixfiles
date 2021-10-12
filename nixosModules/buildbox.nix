@@ -1,6 +1,7 @@
 { ... }:
 { lib, config, ... }:
 {
+  users.groups.hydra = { };
   users.users.hydra-remote-queue-runner = {
     isNormalUser = true;
     group = "hydra";
