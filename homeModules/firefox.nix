@@ -6,9 +6,11 @@
     {
       programs.firefox = {
         enable = true;
-        package = pkgs.wrapFirefox (pkgs.firefox-unwrapped.override {
-          pipewireSupport = !pkgs.stdenv.isAarch64;
-        }) { };
+        package = pkgs.wrapFirefox
+          (pkgs.firefox-unwrapped.override {
+            pipewireSupport = !pkgs.stdenv.isAarch64;
+          })
+          { };
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
           onepassword-password-manager
           metamask
