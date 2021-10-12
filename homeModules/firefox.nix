@@ -6,6 +6,7 @@
     {
       programs.firefox = {
         enable = true;
+        package = if pkgs.stdenv.isAarch64 then pkgs.firefox.override { pipewireSupport = false; } else pkgs.firefox;
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
           onepassword-password-manager
           metamask
