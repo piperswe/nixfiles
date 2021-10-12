@@ -19,7 +19,7 @@ in
       in
       universal-packages
         [
-          { compatible = stdenv.isLinux && stdenv.system != "armv6l-linux"; pkg = tdesktop; }
+          { compatible = x86_64-linux; pkg = tdesktop; }
           { compatible = stdenv.isLinux && !stdenv.isAarch32; pkg = vlc; }
           { compatible = x86_64-linux; pkg = _1password-gui; }
           { compatible = x86_64-linux; pkg = pkgsMaster.plexamp; }
