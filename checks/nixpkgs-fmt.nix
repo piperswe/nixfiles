@@ -1,16 +1,16 @@
-{ nixpkgs, ... }:
+{ nixpkgs, root, ... }:
 system:
 let
   pkgs = nixpkgs.legacyPackages.${system};
 in
 pkgs.runCommand "nixpkgs-fmt"
 {
-  flake = ../.;
+  inherit root;
 }
   ''
     (
       echo checking through nixpkgs-fmt:
-      files=$(ls $flake/{,**/}*.nix)
+      files=$(ls $root/{,**/}*.nix)
       for file in $files
       do
         echo ' - '$file

@@ -19,7 +19,7 @@
 
   outputs = inputs:
     let
-      context = inputs // inputs.self;
+      context = inputs // inputs.self // { root = ./.; };
       inherit (context) packages overlay nixpkgs nixosConfigurations homeConfigurations home-manager;
     in
     {
