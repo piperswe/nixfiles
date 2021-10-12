@@ -11,4 +11,5 @@ context:
   pi4 = import ./pi4.nix context;
   pmc-user = import ./pmc-user.nix context;
   proxmox = import ./proxmox.nix context;
+  ssh = import ./ssh.nix context;
 }

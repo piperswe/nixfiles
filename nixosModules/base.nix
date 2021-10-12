@@ -4,6 +4,7 @@
     # Figure out a way to disable this on non-x86_64-linux
     # nix-ld.nixosModules.nix-ld
     nixosModules.cache
+    nixosModules.ssh
     (modulesPath + "/installer/cd-dvd/channel.nix")
   ];
   options = {
