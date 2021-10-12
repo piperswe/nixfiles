@@ -83,6 +83,10 @@ nixpkgs.lib.nixosSystem {
         '';
 
         services.openssh.knownHosts = {
+          localhost = {
+            hostNames = [ "localhost" ];
+            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMjRgMGJ/zwACrZJZ5f3VIg/qEEde4lhRyC8mf5IRpbs";
+          };
           aarch64-buildbox = {
             hostNames = [ "192.168.0.132" "aarch64-buildbox" ];
             publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMI7Y4XN3/uZqK8S4koYh+9jVevTkOhTY6efQ6JNgroe";
