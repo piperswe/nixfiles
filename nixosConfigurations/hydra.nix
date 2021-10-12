@@ -109,6 +109,12 @@ nixpkgs.lib.nixosSystem {
             "d ${narCache}      0775 hydra hydra 1d -"
           ];
 
+        swapDevices = [
+          {
+            device = "/dev/disk/by-uuid/3bcb41ac-29f0-4853-8673-8288f5923c5f";
+          }
+        ];
+
         hmStateVersion = "21.05";
         system.stateVersion = "21.05";
       })

@@ -125,27 +125,6 @@
         "type": "indirect"
       }
     },
-    "nix-ld": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "utils": "utils"
-      },
-      "locked": {
-        "lastModified": 1631525093,
-        "narHash": "sha256-wIPvR8Cr4B2kqDmbJLndJx/bepf4RwcbezCD7TnPiso=",
-        "owner": "Mic92",
-        "repo": "nix-ld",
-        "rev": "6b7c79223bd1e22c94bc71f4656dcd3da3231e5a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Mic92",
-        "repo": "nix-ld",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1624862269,
@@ -163,31 +142,31 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1633997951,
-        "narHash": "sha256-2iULOcJfkxYqSjU38+M1TWqXSXDDcd0IrlaY4hTFjpk=",
-        "owner": "NixOS",
+        "lastModified": 1634022525,
+        "narHash": "sha256-5WRoEiko7pZRpnv9qdO+Uo9n9ADbLYpPE13CLWBMgCk=",
+        "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "73afb8e8a1d4778e664d1280463448745aca0668",
+        "rev": "9242369aee002201760b10cda99b2be0e691d6d1",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
+        "owner": "nixos",
         "repo": "nixpkgs",
         "type": "github"
       }
     },
     "nur": {
       "locked": {
-        "lastModified": 1633996358,
-        "narHash": "sha256-Ui0J8MCIm/LxWcLLxb/X8PVUv9J7fJrna6gmy32o/yM=",
+        "lastModified": 1634011655,
+        "narHash": "sha256-K9eB8h/EYxY6xq6oNsMyjf6oeA367iB/b5ut5gct9Lo=",
         "owner": "nix-community",
-        "repo": "NUR",
-        "rev": "c8b00024becc83e82251cb3be5bef5127803666b",
+        "repo": "nur",
+        "rev": "76e24ab87f913556e3b2f290e086d1664f70da8d",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
-        "repo": "NUR",
+        "repo": "nur",
         "type": "github"
       }
     },
@@ -198,25 +177,9 @@
         "gitignore": "gitignore",
         "home-manager": "home-manager",
         "hydra": "hydra",
-        "nix-ld": "nix-ld",
         "nixpkgs": "nixpkgs_2",
         "nur": "nur",
         "vscode-server": "vscode-server"
-      }
-    },
-    "utils": {
-      "locked": {
-        "lastModified": 1610051610,
-        "narHash": "sha256-U9rPz/usA1/Aohhk7Cmc2gBrEEKRzcW4nwPWMPwja4Y=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "3982c9903e93927c2164caa727cd3f6a0e6d14cc",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
       }
     },
     "vscode-server": {

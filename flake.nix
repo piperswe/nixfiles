@@ -1,26 +1,43 @@
 {
   description = "pmc's Nix system configuration";
 
-  inputs.nixpkgs.url = github:NixOS/nixpkgs;
-  inputs.home-manager.url = github:nix-community/home-manager;
-  inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";
-  inputs.nix-ld.url = github:Mic92/nix-ld;
-  inputs.nix-ld.inputs.nixpkgs.follows = "nixpkgs";
-  inputs.flake-utils.url = github:numtide/flake-utils;
-  inputs.gitignore.url = github:github/gitignore;
-  inputs.gitignore.flake = false;
-  inputs.nur.url = github:nix-community/NUR;
-  inputs.nur.inputs.nixpkgs.follows = "nixpkgs";
-  inputs.vscode-server.url = github:msteen/nixos-vscode-server;
-  inputs.vscode-server.flake = false;
-  inputs.hydra.url = github:nixos/hydra;
-  inputs.fish-theme-sushi.url = github:umayr/theme-sushi;
-  inputs.fish-theme-sushi.flake = false;
+  inputs = {
+    flake-utils = { url = github:numtide/flake-utils; };
+
+    nixpkgs = { url = github:nixos/nixpkgs; };
+
+    nur = {
+      url = github:nix-community/nur;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    home-manager = {
+      url = github:nix-community/home-manager;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hydra = { url = github:nixos/hydra; };
+
+    vscode-server = {
+      url = github:msteen/nixos-vscode-server;
+      flake = false;
+    };
+
+    gitignore = {
+      url = github:github/gitignore;
+      flake = false;
+    };
+
+    fish-theme-sushi = {
+      url = github:umayr/theme-sushi;
+      flake = false;
+    };
+  };
 
   outputs = inputs:
     let
       context = inputs // inputs.self // { root = ./.; };
-      inherit (context) packages overlay nixpkgs nixosConfigurations homeConfigurations home-manager;
+      inherit (context) packages overlay nixpkgs nixosConfigurations homeConfigurations home-manager nix nur;
     in
     {
       lib = import ./lib context;
@@ -37,7 +54,7 @@
               pkgs = import nixpkgs {
                 inherit system;
                 config.allowUnfree = true;
-                overlays = [ overlay ];
+                overlays = [ nix.overlay nur.overlay overlay ];
               };
             in
             nixpkgs.lib.mapAttrs (packageName: package: pkgs.${packageName}) packages)
@@ -90,7 +107,7 @@
               let pkgs = import nixpkgs {
                 inherit system;
                 config.allowUnfree = true;
-                overlays = [ overlay ];
+                overlays = [ nix.overlay nur.overlay overlay ];
               };
               in
               {
