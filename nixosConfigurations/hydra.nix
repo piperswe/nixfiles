@@ -64,7 +64,7 @@ nixpkgs.lib.nixosSystem {
             systems = emulatedSystems ++ [ "builtin" "x86_64-linux" "i386-linux" ];
             supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
             maxJobs = 4;
-            sshKey = "/root/.ssh/id_ed25519";
+            sshKey = "/var/lib/hydra/queue-runner/.ssh/id_ed25519";
             sshUser = "hydra-remote-queue-runner";
           }
           {
@@ -72,7 +72,7 @@ nixpkgs.lib.nixosSystem {
             systems = [ "aarch64-linux" "armv7l-linux" "armv6l-linux" ];
             supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
             maxJobs = 4;
-            sshKey = "/root/.ssh/id_ed25519";
+            sshKey = "/var/lib/hydra/queue-runner/.ssh/id_ed25519";
             sshUser = "hydra-remote-queue-runner";
           }
         ];
