@@ -3,6 +3,7 @@
   imports = [
     nixosModules.cache
     nixosModules.ssh
+    nixosModules.staging
     (modulesPath + "/installer/cd-dvd/channel.nix")
   ];
   options = {

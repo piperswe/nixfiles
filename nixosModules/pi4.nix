@@ -1,10 +1,7 @@
-{ nixosModules, ... }:
+context:
 { pkgs, lib, modulesPath, ... }:
 {
-  imports = [
-    "${modulesPath}/installer/sd-card/sd-image-aarch64.nix"
-    nixosModules.fake-hwclock
-  ];
+  imports = [ "${modulesPath}/installer/sd-card/sd-image-aarch64.nix" ];
 
   sdImage.compressImage = false;
 
@@ -64,4 +61,6 @@
   networking.networkmanager.enable = true;
 
   powerManagement.cpuFreqGovernor = "ondemand";
+
+  services.fake-hwclock.enable = true;
 }
