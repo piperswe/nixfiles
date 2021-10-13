@@ -7,6 +7,7 @@ context:
   cloudflared = import ./cloudflared.nix context;
   desktop = import ./desktop.nix context;
   development = import ./development.nix context;
+  fake-hwclock = import ./fake-hwclock.nix context;
   homebase = import ./homebase.nix context;
   nvidia = import ./nvidia.nix context;
   pi4 = import ./pi4.nix context;

@@ -1,7 +1,10 @@
-context:
+{ nixosModules, ... }:
 { pkgs, lib, modulesPath, ... }:
 {
-  imports = [ "${modulesPath}/installer/sd-card/sd-image-aarch64.nix" ];
+  imports = [
+    "${modulesPath}/installer/sd-card/sd-image-aarch64.nix"
+    nixosModules.fake-hwclock
+  ];
 
   sdImage.compressImage = false;
 
