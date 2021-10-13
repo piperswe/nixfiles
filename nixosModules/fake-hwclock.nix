@@ -22,10 +22,10 @@ in
     };
   };
 
-  config = mkIf cfg.enable ({
+  config = mkIf cfg.enable {
     systemd.services.fake-hwclock = {
       wantedBy = [ "sysinit.target" ];
-      before = [ "sysinit.target" "shutdown.target" ];
+      before = [ "shutdown.target" ];
       conflicts = [ "shutdown.target" ];
       documentation = [ "man:fake-hwclock(8)" ];
       description = "Restore / save the current clock";
@@ -36,5 +36,5 @@ in
         RemainAfterExit = "yes";
       };
     };
-  });
+  };
 }
