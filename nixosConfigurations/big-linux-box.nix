@@ -29,7 +29,7 @@ nixpkgs.lib.nixosSystem {
       boot.kernelModules = [ "sg" "kvm-amd" ];
       boot.extraModulePackages = [ ];
       boot.supportedFilesystems = [ "ntfs" ];
-      boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+      boot.binfmt.emulatedSystems = [ "aarch64-linux" "powerpc64le-linux" "sparc64-linux" ];
 
       fileSystems."/" = {
         device = "/dev/disk/by-uuid/3357e4c2-a4f3-4d15-b3a0-db2c53415263";

@@ -8,6 +8,8 @@
 
     nixpkgs-master = { url = github:nixos/nixpkgs; };
 
+    nixpkgs-piper-bootstrap = { url = github:piperswe/nixpkgs/piper/bootstrap-ppc64le-and-sparc64; };
+
     nur = {
       url = github:nix-community/nur;
       inputs.nixpkgs.follows = "nixpkgs";
@@ -39,6 +41,11 @@
   outputs = inputs:
     let
       context = inputs // inputs.self // { root = ./.; };
+      system-nixpkgs = {
+        powerpc64le-linux = context.nixpkgs-piper-bootstrap;
+        sparc64-linux = context.nixpkgs-piper-bootstrap;
+      };
+      nixpkgsForSystem = system: system-nixpkgs.${system} or context.nixpkgs;
       inherit (context) packages overlay nixpkgs nixosConfigurations homeConfigurations home-manager nur;
     in
     {
@@ -53,7 +60,7 @@
         packages = nixpkgs.lib.mapAttrs
           (system: packages:
             let
-              pkgs = import nixpkgs {
+              pkgs = import (nixpkgsForSystem system) {
                 inherit system;
                 config.allowUnfree = true;
                 overlays = [ nur.overlay overlay ];
@@ -106,7 +113,7 @@
         homeConfigurations =
           let
             buildHome = (configuration: system:
-              let pkgs = import nixpkgs {
+              let pkgs = import (nixpkgsForSystem system) {
                 inherit system;
                 config.allowUnfree = true;
                 overlays = [ nur.overlay overlay ];
@@ -143,6 +150,6 @@
               value = import ./checks context system;
             })
             context.lib.supported-platforms.hydra));
-      };
+      } // (import ./hydraJobs context);
     };
 }
