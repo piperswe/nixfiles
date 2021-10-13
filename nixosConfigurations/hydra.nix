@@ -59,7 +59,7 @@ nixpkgs.lib.nixosSystem {
             max_output_size = 17179869184
             compress_num_threads = 8
           '';
-          useSubstitutes = true;
+          # useSubstitutes = true;
         };
 
         nix.distributedBuilds = true;
