@@ -12,7 +12,6 @@ nixpkgs.lib.nixosSystem {
     nixosModules.base
     nixosModules.proxmox
     nixosModules.pmc-user
-    nixosModules.cloudflared
     nixosModules.buildbox
     nixosModules.homebase
     nixosModules.auto-upgrade
