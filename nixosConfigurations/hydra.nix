@@ -64,14 +64,14 @@ nixpkgs.lib.nixosSystem {
 
         nix.distributedBuilds = true;
         nix.buildMachines = [
-          # {
-          #   hostName = "localhost";
-          #   systems = emulatedSystems ++ [ "builtin" "x86_64-linux" "i686-linux" ];
-          #   supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
-          #   maxJobs = 4;
-          #   sshKey = "/var/lib/hydra/queue-runner/.ssh/id_ed25519";
-          #   sshUser = "hydra-remote-queue-runner";
-          # }
+          {
+            hostName = "localhost";
+            systems = emulatedSystems ++ [ "builtin" "x86_64-linux" "i686-linux" ];
+            supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
+            maxJobs = 4;
+            sshKey = "/var/lib/hydra/queue-runner/.ssh/id_ed25519";
+            sshUser = "hydra-remote-queue-runner";
+          }
           {
             hostName = "aarch64-buildbox";
             systems = [ "aarch64-linux" "armv7l-linux" "armv6l-linux" ];
