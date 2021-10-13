@@ -44,6 +44,7 @@
         automatic = true;
         dates = "weekly";
       };
+      useChroot = true;
     };
     nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.allowUnfreePackages;
     nixpkgs.overlays = [ overlay nur.overlay ];
