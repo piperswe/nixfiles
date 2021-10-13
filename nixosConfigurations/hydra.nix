@@ -37,7 +37,28 @@ nixpkgs.lib.nixosSystem {
         networking.hostName = "hydra";
         networking.domain = "piperswe.me";
 
-        boot.binfmt.emulatedSystems = emulatedSystems ++ [ "sparc-linux" ];
+        boot.binfmt.emulatedSystems = emulatedSystems;
+        boot.binfmt.registrations.sparc64-linux-2 = {
+          interpreter = (lib.systems.elaborate { system = "sparc64-linux"; }).emulator pkgs;
+          magicOrExtension = ''\x7fELF\x02\x02\x01\x03\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x2b'';
+          mask = ''\xff\xff\xff\xff\xff\xff\xff\x00\xff\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff'';
+        };
+        system.activationScripts.binfmt =
+          let
+            activationSnippet = name: { interpreter, ... }: ''
+              rm -f /run/binfmt/${name}
+              cat > /run/binfmt/${name} << 'EOF'
+              #!${pkgs.bash}/bin/sh
+              export NIXOS_BINFMT=${interpreter}
+              exec -- ${interpreter} "$@"
+              EOF
+              chmod +x /run/binfmt/${name}
+            '';
+          in
+          lib.mkForce (lib.stringAfter [ "specialfs" ] ''
+            mkdir -p -m 0755 /run/binfmt
+            ${lib.concatStringsSep "\n" (lib.mapAttrsToList activationSnippet config.boot.binfmt.registrations)}
+          '');
 
         networking.useDHCP = false;
         networking.interfaces.ens18.useDHCP = true;
