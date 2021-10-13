@@ -1,7 +1,7 @@
 { lib, nixpkgs-piper-bootstrap, ... }:
 let
   nixpkgs = nixpkgs-piper-bootstrap;
-  tools = system: import "${nixpkgs}/pkgs/stdenv/linux/scratch" { from = "x86_64-linux"; to = system; };
+  tools = system: (import "${nixpkgs}/pkgs/stdenv/linux/scratch" { from = "x86_64-linux"; to = system; }).dist;
 in
 builtins.listToAttrs
   (builtins.map
