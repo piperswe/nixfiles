@@ -27,7 +27,7 @@ in
       wantedBy = [ "sysinit.target" ];
       before = [ "sysinit.target" "shutdown.target" ];
       conflicts = [ "shutdown.target" ];
-      documentation = "man:fake-hwclock(8)";
+      documentation = [ "man:fake-hwclock(8)" ];
       description = "Restore / save the current clock";
       serviceConfig = {
         ExecStart = "${cfg.package}/bin/fake-hwclock load";
