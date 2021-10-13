@@ -41,11 +41,8 @@
   outputs = inputs:
     let
       context = inputs // inputs.self // { root = ./.; };
-      nixpkgsForSystem = system:
-        if system == "powerpc64le-linux" || system == "sparc64-linux"
-        then context.nixpkgs-piper-bootstrap
-        else context.nixpkgs;
       inherit (context) packages overlay nixpkgs nixosConfigurations homeConfigurations home-manager nur;
+      inherit (context.lib) nixpkgs-for-system;
     in
     {
       lib = import ./lib context;
@@ -59,7 +56,7 @@
         packages = nixpkgs.lib.mapAttrs
           (system: packages:
             let
-              pkgs = import (nixpkgsForSystem system) {
+              pkgs = import (nixpkgs-for-system system) {
                 inherit system;
                 config.allowUnfree = true;
                 overlays = [ nur.overlay overlay ];
@@ -112,7 +109,7 @@
         homeConfigurations =
           let
             buildHome = (configuration: system:
-              let pkgs = import (nixpkgsForSystem system) {
+              let pkgs = import (nixpkgs-for-system system) {
                 inherit system;
                 config.allowUnfree = true;
                 overlays = [ nur.overlay overlay ];
