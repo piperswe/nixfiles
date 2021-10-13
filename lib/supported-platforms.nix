@@ -17,5 +17,7 @@ rec {
     # "armv6l-linux"
     # "armv7l-linux"
     # "i686-linux"
+    "sparc64-linux"
+    "powerpc64le-linux"
   ];
 }
