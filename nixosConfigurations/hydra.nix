@@ -80,11 +80,22 @@ nixpkgs.lib.nixosSystem {
             sshKey = "/var/lib/hydra/queue-runner/.ssh/id_ed25519";
             sshUser = "hydra-remote-queue-runner";
           }
+          {
+            hostName = "big-linux-box";
+            systems = [ "builtin" "x86_64-linux" "i686-linux" "powerpc64le-linux" "sparc64-linux" ];
+            supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
+            maxJobs = 15;
+            sshKey = "/var/lib/hydra/queue-runner/.ssh/id_ed25519";
+            sshUser = "hydra-remote-queue-runner";
+          }
         ];
 
         programs.ssh.extraConfig = lib.mkAfter ''
           Host aarch64-buildbox
           Hostname 192.168.0.132
+
+          Host big-linux-box
+          Hostname 192.168.0.224
         '';
 
         services.openssh.knownHosts = {
@@ -95,6 +106,10 @@ nixpkgs.lib.nixosSystem {
           aarch64-buildbox = {
             hostNames = [ "192.168.0.132" "aarch64-buildbox" ];
             publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMI7Y4XN3/uZqK8S4koYh+9jVevTkOhTY6efQ6JNgroe";
+          };
+          big-linux-box = {
+            hostNames = [ "192.168.0.224" "big-linux-box" ];
+            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKOLUxNMJpJkDluWHybOQIhuWCLxw3W+eHBZm9BL2iyE";
           };
         };
 

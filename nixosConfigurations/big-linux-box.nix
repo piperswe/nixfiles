@@ -8,6 +8,7 @@ nixpkgs.lib.nixosSystem {
     nixosModules.pmc-user
     nixosModules.nvidia
     nixosModules.homebase
+    nixosModules.buildbox
     ({ config, lib, pkgs, modulesPath, ... }: {
       imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
