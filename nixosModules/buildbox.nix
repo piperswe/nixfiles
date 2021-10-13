@@ -16,10 +16,6 @@
       "hydra-queue-runner"
       "hydra-remote-queue-runner"
     ];
-    extraOptions = ''
-      min-free = ${toString (16 * 1024 * 1024 * 1024)}
-      max-free = ${toString (32 * 1024 * 1024 * 1024)}
-    '';
   };
 }
     
