@@ -41,11 +41,10 @@
   outputs = inputs:
     let
       context = inputs // inputs.self // { root = ./.; };
-      system-nixpkgs = {
-        powerpc64le-linux = context.nixpkgs-piper-bootstrap;
-        sparc64-linux = context.nixpkgs-piper-bootstrap;
-      };
-      nixpkgsForSystem = system: system-nixpkgs.${system} or context.nixpkgs;
+      nixpkgsForSystem = system:
+        if system == "powerpc64le-linux" || system == "sparc64-linux"
+        then context.nixpkgs-piper-bootstrap
+        else context.nixpkgs;
       inherit (context) packages overlay nixpkgs nixosConfigurations homeConfigurations home-manager nur;
     in
     {
