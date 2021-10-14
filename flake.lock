@@ -157,11 +157,11 @@
     },
     "nixpkgs-piper-bootstrap": {
       "locked": {
-        "lastModified": 1634238868,
-        "narHash": "sha256-EX1LrDuEPGIGaHci4KugqPPrRb5p1gbJDliY179NK5w=",
+        "lastModified": 1634239832,
+        "narHash": "sha256-mohDeM9vHiIFtYkyOnKJQFXI9PGrjVUGix2YP54RGYM=",
         "owner": "piperswe",
         "repo": "nixpkgs",
-        "rev": "c550f2fa05fe3be5b46ffed2910d6c1f878e9f6b",
+        "rev": "06a046fe79ad75dce13c6ab03139da37f4b934e3",
         "type": "github"
       },
       "original": {
