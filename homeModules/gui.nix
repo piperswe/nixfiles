@@ -30,6 +30,7 @@ in
           { compatible = stdenv.isLinux; pkg = openrgb; }
           { compatible = builtins.elem stdenv.system [ "x86_64-darwin" "x86_64-linux" "i686-linux" "aarch64-linux" "aarch64-darwin" ]; pkg = element-desktop; }
           josm
+          virt-manager
         ];
     allowUnfreePackages = [ "1password" "plexamp" "steam" "steam-original" "steam-runtime" ];
   };

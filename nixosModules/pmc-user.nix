@@ -12,6 +12,7 @@
         "docker"
         "dialout"
         "cdrom"
+        "libvirtd"
       ];
       openssh.authorizedKeys.keys = lib.splitString "\n" ''
         ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOkkzYtxgVvrjovZfZK/thBFKAdk50ZTv1DRKxh49twr

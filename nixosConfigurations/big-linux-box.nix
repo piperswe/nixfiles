@@ -30,7 +30,8 @@ nixpkgs.lib.nixosSystem {
       boot.kernelModules = [ "sg" "kvm-amd" ];
       boot.extraModulePackages = [ ];
       boot.supportedFilesystems = [ "ntfs" ];
-      boot.binfmt.emulatedSystems = [ "aarch64-linux" "powerpc64le-linux" "sparc64-linux" ];
+      boot.binfmt.emulatedSystems = [ "aarch64-linux" "powerpc64le-linux" ];
+      boot.extraModprobeConfig = "options kvm_intel nested=1";
 
       fileSystems."/" = {
         device = "/dev/disk/by-uuid/3357e4c2-a4f3-4d15-b3a0-db2c53415263";
@@ -52,6 +53,8 @@ nixpkgs.lib.nixosSystem {
         [{ device = "/dev/disk/by-uuid/3d85a7fd-17f3-4b5f-bf24-b449fd6ae08a"; }];
 
       hardware.video.hidpi.enable = true;
+
+      virtualisation.libvirtd.enable = true;
 
       networking.useDHCP = false;
       networking.interfaces.enp4s0.useDHCP = true;
