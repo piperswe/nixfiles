@@ -14,6 +14,8 @@ nixpkgs-piper-bootstrap.lib.nixosSystem {
       boot.loader.grub.enable = true;
       boot.loader.grub.version = 2;
       boot.loader.grub.device = "/dev/sda";
+      # this pulls in, among other things, a whole cross rustc to build spidermonkey
+      security.polkit.enable = false;
     })
   ];
 }
