@@ -59,7 +59,7 @@ nixpkgs.lib.nixosSystem {
             max_output_size = 17179869184
             compress_num_threads = 8
           '';
-          # useSubstitutes = true;
+          useSubstitutes = true;
         };
 
         nix.distributedBuilds = true;
@@ -80,14 +80,14 @@ nixpkgs.lib.nixosSystem {
             sshKey = "/var/lib/hydra/queue-runner/.ssh/id_ed25519";
             sshUser = "hydra-remote-queue-runner";
           }
-          {
-            hostName = "big-linux-box";
-            systems = [ "builtin" "x86_64-linux" "i686-linux" "powerpc64le-linux" "sparc64-linux" ];
-            supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
-            maxJobs = 15;
-            sshKey = "/var/lib/hydra/queue-runner/.ssh/id_ed25519";
-            sshUser = "hydra-remote-queue-runner";
-          }
+          # {
+          #   hostName = "big-linux-box";
+          #   systems = [ "builtin" "x86_64-linux" "i686-linux" "powerpc64le-linux" "sparc64-linux" ];
+          #   supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
+          #   maxJobs = 15;
+          #   sshKey = "/var/lib/hydra/queue-runner/.ssh/id_ed25519";
+          #   sshUser = "hydra-remote-queue-runner";
+          # }
         ];
 
         programs.ssh.extraConfig = lib.mkAfter ''
