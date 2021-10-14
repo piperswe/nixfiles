@@ -1,4 +1,4 @@
-{ nixpkgs, overlay, nur, nixosModules, ... }:
+{ nixpkgs, overlays, nixosModules, ... }:
 { pkgs, lib, config, options, modulesPath, ... }: {
   imports = [
     nixosModules.cache
@@ -46,7 +46,7 @@
       };
     };
     nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.allowUnfreePackages;
-    nixpkgs.overlays = [ overlay nur.overlay ];
+    nixpkgs.overlays = overlays;
     networking.nameservers = [ "::1" ];
     services.dnscrypt-proxy2 = {
       enable = true;

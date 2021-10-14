@@ -1,4 +1,4 @@
-{ homeModules, overlay, nur, lib, ... }:
+{ homeModules, overlays, lib, ... }:
 with lib;
 { pkgs, lib, config, ... }:
 {
@@ -19,7 +19,7 @@ with lib;
   config = {
     programs.home-manager.enable = true;
     nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.allowUnfreePackages;
-    nixpkgs.overlays = [ overlay nur.overlay ];
+    nixpkgs.overlays = overlays;
     home.packages = with pkgs;
       universal-packages
         [

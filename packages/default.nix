@@ -1,4 +1,4 @@
-context@{ flake-utils, nixpkgs, lib, ... }:
+context@{ flake-utils, nixpkgs, lib, overlays, ... }:
 let
   systems = lib.supported-platforms.hydra;
   packageSystems = builtins.map
@@ -6,7 +6,10 @@ let
       nixpkgs.lib.nameValuePair
         system
         (import ./pkgs.nix
-          (lib.nixpkgs-for-system system).legacyPackages.${system}))
+          (import (lib.nixpkgs-for-system system) {
+            inherit overlays;
+            localSystem = { inherit system; };
+          })))
     systems;
 in
 builtins.listToAttrs packageSystems

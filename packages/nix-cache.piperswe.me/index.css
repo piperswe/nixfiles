@@ -1,0 +1,34 @@
+@import "bootstrap/dist/css/bootstrap.css";
+@import "prismjs/themes/prism.css";
+
+body {
+  padding-top: 0;
+  margin-top: 4em;
+  margin-bottom: 4em;
+}
+
+body > div {
+  max-width: 800px;
+}
+
+p {
+  text-align: center;
+}
+
+pre {
+  max-width: 500px;
+}
+
+.jumbotron {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+hr {
+  width: 100%;
+}
+
+.profile-pic {
+  border-radius: 100%;
+}

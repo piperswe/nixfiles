@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>nix-cache.piperswe.me is up</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="index.css" />
+  <script src="index.js"></script>
+</head>
+
+<body>
+  <div class="container jumbotron">
+    <div class="jumbotron">
+      <p class="lead">
+        <a href="https://nixos.org/nixos"><img
+            src="https://nix-cache.piperswe.me/cdn-cgi/image/fit=scale-down,width=200,format=auto/https://nixos.org/logo/nixos-logo-only-hires.png"
+            width="200px" alt="Nix logo" /></a>
+        <span>+</span>
+        <a href="https://piperswe.me"><img
+            src="https://nix-cache.piperswe.me/cdn-cgi/image/fit=scale-down,width=200,format=auto/https://assets.piperswe.me/blog/2021/10/girl-icon_o-2.png"
+            width="200px" alt="Piper's profile picture" class="profile-pic" /></a>
+      </p>
+
+      <p class="lead">
+        <code>https://nix-cache.nixos.org/</code> provides Piper McCorkle's personal Nix binary cache, populated by
+        their <a href="https://hydra.piperswe.me">Hydra cluster</a>.
+      </p>
+      <p>
+        <strong>Cache URL:</strong> <code>https://nix-cache.piperswe.me</code>
+      </p>
+      <p>
+        <strong>Public Key:</strong> <code>nix-cache.piperswe.me:4r7vyJJ/0riN8ILB+YhSCnYeynvxOeZXNsPNV4Fn8mE=</code>
+      </p>
+      <p class="code-parent">
+        <strong>NixOS Configuration:</strong>
+      </p>
+      <pre><code class="language-nix">{
+  nix = {
+    binaryCaches = [
+      "https://nix-cache.piperswe.me"
+    ];
+    binaryCachePublicKeys = [
+      "nix-cache.piperswe.me:4r7vyJJ/0riN8ILB+YhSCnYeynvxOeZXNsPNV4Fn8mE="
+    ];
+  };
+}</code></pre>
+    </div>
+    <hr />
+    <div class="help">
+      <p>
+        If you are having trouble, you can get in touch with me by email (any email at piperswe dot me), <a
+          href="https://pleroma.piperswe.me/pmc">Fediverse</a>, or <a
+          href="https://matrix.to/#/@piper:lutris.engineering">Matrix</a>.
+      </p>
+    </div>
+  </div>
+</body>
+
+</html>

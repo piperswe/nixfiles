@@ -41,7 +41,7 @@
   outputs = inputs:
     let
       context = inputs // inputs.self // { root = ./.; };
-      inherit (context) packages overlay nixpkgs nixosConfigurations homeConfigurations home-manager nur;
+      inherit (context) packages overlay overlays nixpkgs nixosConfigurations homeConfigurations home-manager nur;
       inherit (context.lib) nixpkgs-for-system;
     in
     {
@@ -51,15 +51,16 @@
       nixosConfigurations = import ./nixosConfigurations context;
       nixosModules = import ./nixosModules context;
       packages = import ./packages context;
+      devShells = context.packages;
       overlay = import ./packages/overlay.nix context;
+      overlays = [ nur.overlay overlay ];
       hydraJobs = {
         packages = nixpkgs.lib.mapAttrs
           (system: packages:
             let
               pkgs = import (nixpkgs-for-system system) {
-                inherit system;
+                inherit system overlays;
                 config.allowUnfree = true;
-                overlays = [ nur.overlay overlay ];
               };
             in
             nixpkgs.lib.mapAttrs (packageName: package: pkgs.${packageName}) packages)
@@ -110,9 +111,8 @@
           let
             buildHome = (configuration: system:
               let pkgs = import (nixpkgs-for-system system) {
-                inherit system;
+                inherit system overlays;
                 config.allowUnfree = true;
-                overlays = [ nur.overlay overlay ];
               };
               in
               {
