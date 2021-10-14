@@ -57,7 +57,8 @@ nixpkgs.lib.nixosSystem {
       virtualisation.libvirtd.enable = true;
 
       networking.useDHCP = false;
-      networking.interfaces.enp4s0.useDHCP = true;
+      networking.bridges.br0.interfaces = [ "enp4s0" ];
+      networking.interfaces.br0.useDHCP = true;
 
       time.timeZone = "America/Chicago";
 
