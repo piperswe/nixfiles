@@ -41,8 +41,8 @@
   outputs = inputs:
     let
       context = inputs // inputs.self // { root = ./.; };
-      inherit (context) packages overlay overlays nixpkgs nixosConfigurations homeConfigurations home-manager nur;
-      inherit (context.lib) nixpkgs-for-system;
+      inherit (context) packages overlay overlays flake-utils nixpkgs nixosConfigurations homeConfigurations home-manager nur;
+      inherit (context.lib) nixpkgs-for-system supported-platforms;
     in
     {
       lib = import ./lib context;
@@ -52,6 +52,16 @@
       nixosModules = import ./nixosModules context;
       packages = import ./packages context;
       devShells = context.packages;
+      apps = builtins.listToAttrs (builtins.map
+        (system: {
+          name = system;
+          value = {
+            update-machine = flake-utils.lib.mkApp {
+              drv = packages.${system}.update-machine;
+            };
+          };
+        })
+        supported-platforms.hydra);
       overlay = import ./packages/overlay.nix context;
       overlays = [ nur.overlay overlay ];
       hydraJobs = {
@@ -137,7 +147,7 @@
                     name = system;
                     value = buildHome value system;
                   })
-                  context.lib.supported-platforms.hydra)))
+                  supported-platforms.hydra)))
             homeConfigurations;
         checks = (builtins.listToAttrs
           (builtins.map
@@ -145,7 +155,7 @@
               name = system;
               value = import ./checks context system;
             })
-            context.lib.supported-platforms.hydra));
+            supported-platforms.hydra));
       } // (import ./hydraJobs context);
     };
 }

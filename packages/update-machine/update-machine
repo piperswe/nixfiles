@@ -1,0 +1,25 @@
+#!/usr/bin/env python
+
+import argparse
+import subprocess
+import git
+from getpass import getpass
+
+parser = argparse.ArgumentParser(description='Update a NixOS machine using this flake')
+parser.add_argument('hostname', type=str, help='The hostname of the NixOS to update')
+parser.add_argument('--flake', type=str, help='The flake identifier - must be Git', default='github:piperswe/nixfiles')
+
+args = parser.parse_args()
+
+hostname = args.hostname
+
+def exec(cmd, input=None):
+  print('Running {} on {}'.format(cmd, args.hostname))
+  subprocess.run(['ssh', args.hostname, '--'] + cmd, input=input)
+
+repo = git.Repo()
+sha = repo.head.object.hexsha
+flake = '{}/{}'.format(args.flake, sha)
+print('Updating {} to {}'.format(hostname, flake))
+password = getpass(prompt='sudo password: ')
+exec(['sudo', '-S', 'nixos-rebuild', 'switch', '--flake', flake], input='{}\n'.format(password).encode('utf-8'))
