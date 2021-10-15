@@ -88,14 +88,24 @@ nixpkgs.lib.nixosSystem {
           #   sshKey = "/var/lib/hydra/queue-runner/.ssh/id_ed25519";
           #   sshUser = "hydra-remote-queue-runner";
           # }
+          {
+            hostName = "nixbuild";
+            system = "x86_64-linux";
+            maxJobs = 100;
+            supportedFeatures = [ "benchmark" "big-parallel" ];
+            sshKey = "/var/lib/hydra/queue-runner/.ssh/id_ed25519";
+          }
         ];
 
         programs.ssh.extraConfig = lib.mkAfter ''
           Host aarch64-buildbox
-          Hostname 192.168.0.132
+            Hostname 192.168.0.132
 
           Host big-linux-box
-          Hostname 192.168.0.224
+            Hostname 192.168.0.224
+
+          Host nixbuild
+            Hostname eu.nixbuild.net
         '';
 
         services.openssh.knownHosts = {
@@ -110,6 +120,10 @@ nixpkgs.lib.nixosSystem {
           big-linux-box = {
             hostNames = [ "192.168.0.224" "big-linux-box" ];
             publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKOLUxNMJpJkDluWHybOQIhuWCLxw3W+eHBZm9BL2iyE";
+          };
+          nixbuild = {
+            hostNames = [ "eu.nixbuild.net" "nixbuild" ];
+            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPIQCZc54poJ8vqawd8TraNryQeJnvH1eLpIDgbiqymM";
           };
         };
 
