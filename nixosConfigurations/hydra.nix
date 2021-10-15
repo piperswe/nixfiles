@@ -66,7 +66,7 @@ nixpkgs.lib.nixosSystem {
         nix.buildMachines = [
           {
             hostName = "localhost";
-            systems = emulatedSystems ++ [ "builtin" "x86_64-linux" "i686-linux" ];
+            systems = emulatedSystems ++ [ "builtin" "i686-linux" ];
             supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
             maxJobs = 10;
             sshKey = "/var/lib/hydra/queue-runner/.ssh/id_ed25519";
