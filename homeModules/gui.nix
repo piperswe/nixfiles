@@ -30,8 +30,9 @@ in
           { compatible = stdenv.isLinux; pkg = openrgb; }
           { compatible = builtins.elem stdenv.system [ "x86_64-darwin" "x86_64-linux" "i686-linux" "aarch64-linux" "aarch64-darwin" ]; pkg = element-desktop; }
           { compatible = stdenv.isLinux; pkg = virt-manager; }
+          { compatible = builtins.elem stdenv.system [ "x86_64-darwin" "i686-linux" "x86_64-linux" ]; pkg = jetbrains.idea-ultimate; }
           josm
         ];
-    allowUnfreePackages = [ "1password" "plexamp" "steam" "steam-original" "steam-runtime" ];
+    allowUnfreePackages = [ "1password" "plexamp" "steam" "steam-original" "steam-runtime" "idea-ultimate" ];
   };
 }
