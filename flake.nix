@@ -46,7 +46,13 @@
   outputs = inputs:
     let
       context = inputs // inputs.self // { root = ./.; };
-      inherit (context) packages overlay overlays flake-utils nixpkgs nixosConfigurations homeConfigurations home-manager nur;
+      inherit (context)
+        packages
+        homeConfigurations
+        nixosConfigurations
+        overlay overlays
+        darwinConfigurations
+        flake-utils nixpkgs home-manager nur;
       inherit (context.lib) nixpkgs-for-system supported-platforms;
     in
     {
@@ -124,6 +130,7 @@
               # "vm"
             ])
           nixosConfigurations;
+        darwinConfigurations = nixpkgs.lib.mapAttrs (name: value: value.system) darwinConfigurations;
         homeConfigurations =
           let
             buildHome = (configuration: system:
