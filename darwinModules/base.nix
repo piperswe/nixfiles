@@ -1,6 +1,7 @@
-{ nixpkgs, ... }:
+{ nixpkgs, nixosModules, ... }:
 { lib, pkgs, ... }:
 {
+  imports = [ nixosModules.cache ];
   options = {
     allowUnfreePackages = lib.mkOption {
       type = lib.types.listOf lib.types.str;
