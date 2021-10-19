@@ -1,11 +1,11 @@
 { gitignore, ... }:
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   programs.git = {
     enable = true;
     package = pkgs.gitAndTools.gitFull;
     userName = "Piper McCorkle";
-    userEmail = "contact@piperswe.me";
+    userEmail = lib.mkDefault "contact@piperswe.me";
     ignores =
       let
         files = [

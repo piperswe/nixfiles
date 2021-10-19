@@ -1,9 +1,9 @@
 { homeModules, ... }:
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   imports = [
     homeModules.base
   ];
-  home.username = "pmc";
-  home.homeDirectory = "/home/pmc";
+  home.username = lib.mkDefault "pmc";
+  home.homeDirectory = lib.mkDefault "/home/pmc";
 }

@@ -20,6 +20,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    darwin = {
+      url = github:lnl7/nix-darwin;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     hydra = { url = github:nixos/hydra; };
 
     vscode-server = {
@@ -50,6 +55,8 @@
       homeModules = import ./homeModules context;
       nixosConfigurations = import ./nixosConfigurations context;
       nixosModules = import ./nixosModules context;
+      darwinConfigurations = import ./darwinConfigurations context;
+      darwinModules = import ./darwinModules context;
       packages = import ./packages context;
       devShells = context.packages;
       apps = builtins.listToAttrs (builtins.map

@@ -16,7 +16,7 @@
         "command-not-found"
         "git"
         "kubectl"
-      ] ++ (lib.optionals pkgs.stdenv.isDarwin [ "brew" "iterm2" ]);
+      ] ++ (lib.optionals pkgs.stdenv.isDarwin [ "iterm2" ]);
     };
   };
 }

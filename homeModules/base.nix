@@ -47,5 +47,12 @@ with lib;
           silver-searcher
         ];
     programs.gpg.enable = true;
+    xdg.configFile."shell" = {
+      executable = true;
+      text = ''
+        #!/bin/sh
+        exec ${pkgs.fish}/bin/fish "$@"
+      '';
+    };
   };
 }
