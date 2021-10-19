@@ -7,7 +7,6 @@ darwin.lib.darwinSystem {
     ({ ... }: {
       withGUI = true;
       networking.hostName = "pmc-ladder-macbook";
-      environment.darwinConfig = "$HOME/Documents/nixfiles/nix-darwin-compat/pmc-ladder-macbook.nix";
       home-manager.users.pmc.programs.git.userEmail = "piper@ladderlife.com";
       # Used for backwards compatibility, please read the changelog before changing.
       # $ darwin-rebuild changelog
