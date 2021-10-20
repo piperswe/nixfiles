@@ -88,13 +88,13 @@ nixpkgs.lib.nixosSystem {
           #   sshKey = "/var/lib/hydra/queue-runner/.ssh/id_ed25519";
           #   sshUser = "hydra-remote-queue-runner";
           # }
-          {
-            hostName = "nixbuild";
-            system = "x86_64-linux";
-            maxJobs = 100;
-            supportedFeatures = [ "benchmark" "big-parallel" ];
-            sshKey = "/var/lib/hydra/queue-runner/.ssh/id_ed25519";
-          }
+          # {
+          #   hostName = "nixbuild";
+          #   system = "x86_64-linux";
+          #   maxJobs = 100;
+          #   supportedFeatures = [ "benchmark" "big-parallel" ];
+          #   sshKey = "/var/lib/hydra/queue-runner/.ssh/id_ed25519";
+          # }
         ];
 
         programs.ssh.extraConfig = lib.mkAfter ''
