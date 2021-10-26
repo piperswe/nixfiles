@@ -2,6 +2,7 @@ context:
 {
   alacritty = import ./alacritty.nix context;
   base = import ./base.nix context;
+  emacs = import ./emacs.nix context;
   firefox = import ./firefox.nix context;
   fish = import ./fish.nix context;
   git = import ./git.nix context;

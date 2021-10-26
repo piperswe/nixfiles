@@ -1,7 +1,7 @@
-{ nixpkgs, nixosModules, ... }:
+{ nixpkgs, nixosModules, darwin, ... }:
 { lib, pkgs, ... }:
 {
-  imports = [ nixosModules.cache ];
+  imports = [ nixosModules.cache darwin.darwinModules.flakeOverrides ];
   options = {
     allowUnfreePackages = lib.mkOption {
       type = lib.types.listOf lib.types.str;

@@ -9,6 +9,7 @@ with lib;
     homeModules.git
     homeModules.neovim
     homeModules.ssh
+    homeModules.emacs
   ];
   options = {
     allowUnfreePackages = lib.mkOption {
