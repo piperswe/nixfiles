@@ -11,6 +11,7 @@
     ];
     shellInit = ''
       ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
+      ${lib.optionalString pkgs.stdenv.isDarwin "ulimit -n 10240"}
     '';
   };
 }
