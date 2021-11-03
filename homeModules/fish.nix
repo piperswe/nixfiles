@@ -1,4 +1,4 @@
-{ fish-theme-sushi, ... }:
+{ fish-theme-sushi, fish-rbenv, ... }:
 { pkgs, lib, ... }:
 {
   programs.fish = {
@@ -7,6 +7,10 @@
       {
         name = "sushi";
         src = fish-theme-sushi;
+      }
+      {
+        name = "fish-rbenv";
+        src = fish-rbenv;
       }
     ];
     shellInit = ''

@@ -41,6 +41,11 @@
       url = github:umayr/theme-sushi;
       flake = false;
     };
+
+    fish-rbenv = {
+      url = github:piperswe/fish-rbenv/patch-1;
+      flake = false;
+    };
   };
 
   outputs = inputs:

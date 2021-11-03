@@ -46,6 +46,17 @@ with lib;
           gh
           openssh
           silver-searcher
+
+          # Allow me to start a shell with Homebrew stuff in the environment
+          {
+            compatible = stdenv.isDarwin;
+            pkg = writeShellScriptBin "brew-shell" ''
+              export PATH="/opt/homebrew/bin:$PATH"
+              export IN_NIX_SHELL="Sure, whatever"
+              export ANY_NIX_SHELL_PKGS="Homebrew"
+              exec ''${XDG_CONFIG_HOME:-$HOME/.config}/shell "$@"
+            '';
+          }
         ];
     programs.gpg.enable = true;
     xdg.configFile."shell" = {

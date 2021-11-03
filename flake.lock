@@ -20,6 +20,23 @@
         "type": "github"
       }
     },
+    "fish-rbenv": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1635910292,
+        "narHash": "sha256-HLBMM/134IF4ct6k/h328iKAuITh7NxNsovcbsQ+Ydk=",
+        "owner": "piperswe",
+        "repo": "fish-rbenv",
+        "rev": "c4cc7859c8229591aba0a2b539f44306753de08e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "piperswe",
+        "ref": "patch-1",
+        "repo": "fish-rbenv",
+        "type": "github"
+      }
+    },
     "fish-theme-sushi": {
       "flake": false,
       "locked": {
@@ -225,6 +242,7 @@
     "root": {
       "inputs": {
         "darwin": "darwin",
+        "fish-rbenv": "fish-rbenv",
         "fish-theme-sushi": "fish-theme-sushi",
         "flake-utils": "flake-utils",
         "gitignore": "gitignore",
