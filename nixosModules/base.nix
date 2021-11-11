@@ -22,6 +22,7 @@
       package = pkgs.nixUnstable;
       extraOptions = ''
         experimental-features = nix-command flakes
+        !include /etc/nix/nix-auth.conf
       '';
       registry = {
         nixfiles = {
