@@ -127,6 +127,24 @@ in
             pkgs.vscode-extensions.dhall.dhall-lang
             pkgs.vscode-extensions.dhall.vscode-dhall-lsp-server
           ];
+          c-cpp = [
+            (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+              mktplcRef = {
+                publisher = "asabil";
+                name = "meson";
+                version = "1.3.0";
+                sha256 = "sha256-QMp3dEFx6Mu5pgzklylW6b/ugYbtbT/qz8IeeuzPZeA=";
+              };
+            })
+            (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+              mktplcRef = {
+                publisher = "ms-vscode";
+                name = "cpptools";
+                version = "1.7.1";
+                sha256 = "sha256-2vgkfpoQCA+1B4r3h2YjBhnxYf2inCojNDFXALh9hkE=";
+              };
+            })
+          ];
           misc-devops = [
             ms-azuretools.vscode-docker
           ];
@@ -143,6 +161,7 @@ in
         ++ nix
         ++ protobuf
         ++ dhall
+        ++ c-cpp
         ++ misc-devops;
     };
   };
