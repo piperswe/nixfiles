@@ -162,6 +162,21 @@
         "type": "indirect"
       }
     },
+    "nixos-hardware": {
+      "locked": {
+        "lastModified": 1636317251,
+        "narHash": "sha256-u1cWvvtGH5mfGkeIKrqw2usk4IL7wDiRcnJkUSiZq3Q=",
+        "owner": "nixos",
+        "repo": "nixos-hardware",
+        "rev": "fd6f34afcf062761fb5035230f6297752bfedcba",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1624862269,
@@ -248,6 +263,7 @@
         "gitignore": "gitignore",
         "home-manager": "home-manager",
         "hydra": "hydra",
+        "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-piper-bootstrap": "nixpkgs-piper-bootstrap",

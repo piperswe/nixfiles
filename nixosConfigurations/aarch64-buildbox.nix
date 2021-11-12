@@ -10,6 +10,7 @@ nixpkgs.lib.nixosSystem {
     nixosModules.auto-upgrade
     ({ config, lib, pkgs, modulesPath, ... }: {
       networking.hostName = "aarch64-buildbox";
+      networking.hostId = "ba1f3246";
 
       time.timeZone = "America/Chicago";
 

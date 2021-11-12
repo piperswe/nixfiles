@@ -10,6 +10,7 @@ nixpkgs.lib.nixosSystem {
     ({ config, lib, pkgs, modulesPath, ... }: {
       networking.hostName = "bastion";
       networking.domain = "piperswe.me";
+      networking.hostId = "69b26573";
 
       networking.useDHCP = false;
       networking.interfaces.ens18.useDHCP = true;

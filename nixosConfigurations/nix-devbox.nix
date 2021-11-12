@@ -10,6 +10,7 @@ nixpkgs.lib.nixosSystem {
     nixosModules.auto-upgrade
     ({ config, lib, pkgs, modulesPath, ... }: {
       networking.hostName = "nix-devbox";
+      networking.hostId = "99fff452";
 
       boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 

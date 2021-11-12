@@ -13,6 +13,7 @@ nixpkgs.lib.nixosSystem {
       imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
       networking.hostName = "big-linux-box";
+      networking.hostId = "5b55aaa9";
 
       boot.loader.systemd-boot.enable = true;
       # boot.loader.grub = {

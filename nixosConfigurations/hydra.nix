@@ -36,6 +36,7 @@ nixpkgs.lib.nixosSystem {
       {
         networking.hostName = "hydra";
         networking.domain = "piperswe.me";
+        networking.hostId = "e910a73a";
 
         boot.binfmt.emulatedSystems = emulatedSystems;
 

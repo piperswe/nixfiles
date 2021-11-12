@@ -46,6 +46,8 @@
       url = github:piperswe/fish-rbenv/patch-1;
       flake = false;
     };
+
+    nixos-hardware.url = github:nixos/nixos-hardware;
   };
 
   outputs = inputs:
