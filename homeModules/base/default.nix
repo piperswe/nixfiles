@@ -47,6 +47,9 @@ with lib;
           openssh
           silver-searcher
 
+          # Development tools I want globally
+          nodejs-16_x
+
           # Allow me to start a shell with Homebrew stuff in the environment
           {
             compatible = stdenv.isDarwin;
