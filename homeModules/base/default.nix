@@ -20,7 +20,6 @@ with lib;
   config = {
     programs.home-manager.enable = true;
     nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.allowUnfreePackages;
-    nixpkgs.config.allowBroken = true;
     nixpkgs.overlays = overlays;
     home.packages = with pkgs;
       universal-packages
@@ -38,11 +37,6 @@ with lib;
           htop
           { compatible = stdenv.isLinux; pkg = iotop; }
           bat
-          bat-extras.batman
-          bat-extras.batgrep
-          bat-extras.batdiff
-          bat-extras.batwatch
-          bat-extras.prettybat
           file
           gh
           openssh
