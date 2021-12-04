@@ -49,6 +49,7 @@ with lib;
 
           # Development tools I want globally
           nodejs-16_x
+          nodePackages.pnpm
 
           # Allow me to start a shell with Homebrew stuff in the environment
           {
