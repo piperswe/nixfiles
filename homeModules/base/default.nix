@@ -20,6 +20,7 @@ with lib;
   config = {
     programs.home-manager.enable = true;
     nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.allowUnfreePackages;
+    nixpkgs.config.allowBroken = true;
     nixpkgs.overlays = overlays;
     home.packages = with pkgs;
       universal-packages
