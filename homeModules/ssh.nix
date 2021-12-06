@@ -48,6 +48,10 @@
         user = "pmc";
         proxyJump = "bastion";
       };
+      "bitbucket.cfdata.org stash.cfops.it" = {
+        hostname = "git.cfdata.org";
+        proxyCommand = "${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h";
+      };
     };
   };
 }

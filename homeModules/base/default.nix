@@ -21,6 +21,9 @@ with lib;
     programs.home-manager.enable = true;
     nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.allowUnfreePackages;
     nixpkgs.overlays = overlays;
+    allowUnfreePackages = [
+      "cloudflared"
+    ];
     home.packages = with pkgs;
       universal-packages
         [
@@ -30,6 +33,9 @@ with lib;
 
           # Used for working with my S3 binary cache
           awscli2
+
+          # Used at Cloudflare
+          cloudflared
 
           # These are universally usable system utilities
           ripgrep

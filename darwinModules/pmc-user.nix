@@ -11,7 +11,7 @@
     home-manager.useUserPackages = true;
     home-manager.backupFileExtension = "hm-backup";
     home-manager.users.pmc = {
-      imports = [ homeConfigurations.pmc ];
+      imports = [ homeConfigurations.pmc.config ];
       home.stateVersion = config.hmStateVersion;
       withGUI = config.withGUI;
     };
