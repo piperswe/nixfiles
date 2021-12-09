@@ -6,6 +6,7 @@ let
       nixpkgs.lib.nameValuePair
         system
         (import ./pkgs.nix
+        context
           (import (lib.nixpkgs-for-system system) {
             inherit overlays;
             localSystem = { inherit system; };

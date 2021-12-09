@@ -64,6 +64,11 @@ with lib;
           }
         ];
     programs.gpg.enable = true;
+    programs.go = {
+      enable = true;
+      goPath = "go";
+      goPrivate = [ "code.cfops.it" ];
+    };
     xdg.configFile."shell" = {
       executable = true;
       text = ''
