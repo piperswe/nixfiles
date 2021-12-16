@@ -65,6 +65,7 @@
     {
       lib = import ./lib context;
       homeConfigurations = import ./homeConfigurations context;
+      rawHomeConfigurations = import ./homeConfigurations/raw.nix context;
       homeModules = import ./homeModules context;
       nixosConfigurations = import ./nixosConfigurations context;
       nixosModules = import ./nixosModules context;

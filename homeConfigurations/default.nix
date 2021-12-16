@@ -1,9 +1,18 @@
-context@{ home-manager, ... }:
-{
-  pmc = home-manager.lib.homeManagerConfiguration {
-    system = "x86_64-linux";
-    homeDirectory = "/home/pmc";
-    username = "pmc";
-    configuration = import ./pmc.nix context;
-  };
-}
+context@{ lib, rawHomeConfigurations, flake-utils, home-manager, ... }:
+let
+  systems = lib.supported-platforms.hydra;
+  configSystems = builtins.map
+    (system:
+      nixpkgs.lib.nameValuePair
+        system
+        (builtins.mapAttrs
+          rawHomeConfigurations
+          (name: value: home-manager.lib.homeManagerConfiguration {
+            inherit system;
+            homeDirectory = "/home/${name}";
+            username = name;
+            configuration = value;
+          })))
+    systems;
+in
+builtins.listToAttrs configSystems

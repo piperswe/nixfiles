@@ -1,4 +1,4 @@
-{ home-manager, homeConfigurations, ... }:
+{ home-manager, rawHomeConfigurations, ... }:
 { pkgs, lib, config, ... }: {
   imports = [ home-manager.nixosModules.home-manager ];
   config = {
@@ -30,9 +30,11 @@
     };
     home-manager.useUserPackages = true;
     home-manager.users.pmc = {
-      imports = [ homeConfigurations.pmc.config ];
-      home.stateVersion = config.hmStateVersion;
-      withGUI = config.withGUI;
+      imports = [ rawHomeConfigurations.pmc ];
+      config = {
+        home.stateVersion = config.hmStateVersion;
+        withGUI = config.withGUI;
+      };
     };
   };
 }
