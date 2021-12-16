@@ -10,6 +10,7 @@ with lib;
     homeModules.neovim
     homeModules.ssh
     homeModules.emacs
+    homeModules.vscode-server
   ];
   options = {
     allowUnfreePackages = lib.mkOption {
