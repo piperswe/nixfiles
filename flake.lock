@@ -267,24 +267,7 @@
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-piper-bootstrap": "nixpkgs-piper-bootstrap",
-        "nur": "nur",
-        "vscode-server": "vscode-server"
-      }
-    },
-    "vscode-server": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1635606323,
-        "narHash": "sha256-t782ucKRoatIQn8BJtJZVcmu+KFq21hX+nO/ZXLmWAE=",
-        "owner": "msteen",
-        "repo": "nixos-vscode-server",
-        "rev": "bc28cc2a7d866b32a8358c6ad61bea68a618a3f5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "msteen",
-        "repo": "nixos-vscode-server",
-        "type": "github"
+        "nur": "nur"
       }
     }
   },

@@ -10,7 +10,6 @@ with lib;
     homeModules.neovim
     homeModules.ssh
     homeModules.emacs
-    homeModules.vscode-server
     homeModules.cloudflared
   ];
   options = {

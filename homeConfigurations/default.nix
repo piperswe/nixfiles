@@ -1,4 +1,4 @@
-context@{ lib, rawHomeConfigurations, flake-utils, home-manager, ... }:
+context@{ lib, nixpkgs, rawHomeConfigurations, flake-utils, home-manager, ... }:
 let
   systems = lib.supported-platforms.hydra;
   configSystems = builtins.map

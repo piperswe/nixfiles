@@ -27,11 +27,6 @@
 
     hydra = { url = github:nixos/hydra; };
 
-    vscode-server = {
-      url = github:msteen/nixos-vscode-server;
-      flake = false;
-    };
-
     gitignore = {
       url = github:github/gitignore;
       flake = false;
