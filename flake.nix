@@ -4,6 +4,8 @@
   inputs = {
     flake-utils = { url = github:numtide/flake-utils; };
 
+    nix = { url = github:nixos/nix; };
+
     nixpkgs = { url = github:nixos/nixpkgs/nixpkgs-unstable; };
 
     nixpkgs-master = { url = github:nixos/nixpkgs; };
