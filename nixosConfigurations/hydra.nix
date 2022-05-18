@@ -47,6 +47,8 @@ nixpkgs.lib.nixosSystem {
 
         services.openssh.enable = true;
 
+	services.postgresql.package = pkgs.postgresql_13;
+
         services.hydra = {
           enable = true;
           package = hydra.defaultPackage.${pkgs.stdenv.system}.overrideAttrs (oldAttrs: {
