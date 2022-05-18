@@ -22,9 +22,9 @@ nixpkgs.lib.nixosSystem {
         nativeSystems = [
           "x86_64-linux"
           "i686-linux"
-          "aarch64-linux"
-          "armv6l-linux"
-          "armv7l-linux"
+          # "aarch64-linux"
+          # "armv6l-linux"
+          # "armv7l-linux"
         ];
         # Linux-based systems I don't have a buildbox for, so should be emulated
         emulatedSystems = lib.filter
@@ -68,24 +68,24 @@ nixpkgs.lib.nixosSystem {
           useSubstitutes = true;
         };
 
-        nix.distributedBuilds = true;
-        nix.buildMachines = [
-          {
-            hostName = "localhost";
-            systems = emulatedSystems ++ [ "builtin" "x86_64-linux" "i686-linux" ];
-            supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
-            maxJobs = 10;
-            sshKey = "/var/lib/hydra/queue-runner/.ssh/id_ed25519";
-            sshUser = "hydra-remote-queue-runner";
-          }
-          {
-            hostName = "aarch64-buildbox";
-            systems = [ "aarch64-linux" "armv7l-linux" "armv6l-linux" ];
-            supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
-            maxJobs = 6;
-            sshKey = "/var/lib/hydra/queue-runner/.ssh/id_ed25519";
-            sshUser = "hydra-remote-queue-runner";
-          }
+        nix.distributedBuilds = false;
+        # nix.buildMachines = [
+        #   {
+        #     hostName = "localhost";
+        #     systems = emulatedSystems ++ [ "builtin" "x86_64-linux" "i686-linux" ];
+        #     supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
+        #     maxJobs = 10;
+        #     sshKey = "/var/lib/hydra/queue-runner/.ssh/id_ed25519";
+        #     sshUser = "hydra-remote-queue-runner";
+        #   }
+        #   {
+        #     hostName = "aarch64-buildbox";
+        #     systems = [ "aarch64-linux" "armv7l-linux" "armv6l-linux" ];
+        #     supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
+        #     maxJobs = 6;
+        #     sshKey = "/var/lib/hydra/queue-runner/.ssh/id_ed25519";
+        #     sshUser = "hydra-remote-queue-runner";
+        #   }
           # {
           #   hostName = "big-linux-box";
           #   systems = [ "builtin" "x86_64-linux" "i686-linux" "powerpc64le-linux" "sparc64-linux" ];
@@ -101,7 +101,7 @@ nixpkgs.lib.nixosSystem {
           #   supportedFeatures = [ "benchmark" "big-parallel" ];
           #   sshKey = "/var/lib/hydra/queue-runner/.ssh/id_ed25519";
           # }
-        ];
+        # ];
 
         programs.ssh.extraConfig = lib.mkAfter ''
           Host aarch64-buildbox
