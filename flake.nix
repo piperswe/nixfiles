@@ -4,8 +4,6 @@
   inputs = {
     flake-utils = { url = github:numtide/flake-utils; };
 
-    nix = { url = github:nixos/nix; };
-
     nixpkgs = { url = github:nixos/nixpkgs/nixpkgs-unstable; };
 
     nixpkgs-master = { url = github:nixos/nixpkgs; };
@@ -27,7 +25,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hydra = { url = github:nixos/hydra; };
+    hydra = {
+      url = github:nixos/hydra;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     gitignore = {
       url = github:github/gitignore;
