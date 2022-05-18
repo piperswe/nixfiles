@@ -49,7 +49,9 @@ nixpkgs.lib.nixosSystem {
 
         services.hydra = {
           enable = true;
-          package = hydra.defaultPackage.${pkgs.stdenv.system};
+          package = hydra.defaultPackage.${pkgs.stdenv.system}.overrideAttrs {
+	    doCheck = false;
+	  };
           hydraURL = "http://localhost:3000";
           notificationSender = "hydra@piperswe.me";
           extraConfig = ''
