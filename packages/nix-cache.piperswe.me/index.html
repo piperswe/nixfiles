@@ -38,14 +38,21 @@
       </p>
       <pre><code class="language-nix">{
   nix = {
-    binaryCaches = [
+    substituters = [
+      "https://cache.nixos.org/",
       "https://nix-cache.piperswe.me"
     ];
-    binaryCachePublicKeys = [
+    trustedPublicKeys = [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=",
       "nix-cache.piperswe.me:4r7vyJJ/0riN8ILB+YhSCnYeynvxOeZXNsPNV4Fn8mE="
     ];
   };
 }</code></pre>
+      <p class="code-parent">
+        <strong><code>nix.conf</code> Configuration:</strong>
+      </p>
+      <pre><code class="language-properties">substituters = https://cache.nixos.org/ https://nix-cache.piperswe.me/
+trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-cache.piperswe.me:4r7vyJJ/0riN8ILB+YhSCnYeynvxOeZXNsPNV4Fn8mE=</code></pre>
     </div>
     <hr />
     <div class="help">
